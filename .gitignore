@@ -398,4 +398,31 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Visual Studio
 .vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+
+# Temporary files
+*.log
+*.tmp
+*.cache
+*.pdb
+*.csproj.FileListAbsolute.txt
+*.dbmdl
+*.db
+*.ldf
+*.resx
+
+# Resource Explorer
+**/ResourceExplorer/
+
+# Others
+*.vsidx
+*.genruntimeconfig.cache
+
