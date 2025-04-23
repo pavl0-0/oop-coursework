@@ -18,3 +18,6 @@ G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.Applicants_Handbook.resources
 G:\CourseWork\bin\Debug\net8.0-windows\uk-UA\CourseWork.resources.dll
 G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.Applicants_Handbook.uk-UA.resources
 G:\CourseWork\obj\Debug\net8.0-windows\uk-UA\CourseWork.resources.dll
+G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.LogInForm.resources
+G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.RegistrationForm.resources
+G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.Main.resources

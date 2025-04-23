@@ -9,6 +9,11 @@
       "CourseWork/1.0.0": {
         "runtime": {
           "CourseWork.dll": {}
+        },
+        "resources": {
+          "uk-UA/CourseWork.resources.dll": {
+            "locale": "uk-UA"
+          }
         }
       }
     }

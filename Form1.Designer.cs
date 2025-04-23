@@ -6,7 +6,6 @@
         ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
         /// <summary>
         ///  Clean up any resources being used.
         /// </summary>
@@ -29,47 +28,39 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Applicants_Handbook));
-            label1 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
+            RegistrationMainButton = new Button();
+            LogInMainButton = new Button();
             SuspendLayout();
             // 
-            // label1
+            // RegistrationMainButton
             // 
-            resources.ApplyResources(label1, "label1");
-            label1.Name = "label1";
-            label1.Click += label1_Click;
+            resources.ApplyResources(RegistrationMainButton, "RegistrationMainButton");
+            RegistrationMainButton.Name = "RegistrationMainButton";
+            RegistrationMainButton.UseVisualStyleBackColor = true;
+            RegistrationMainButton.Click += RegistrationMainButton_Click;
             // 
-            // textBox1
+            // LogInMainButton
             // 
-            resources.ApplyResources(textBox1, "textBox1");
-            textBox1.Name = "textBox1";
-            // 
-            // button1
-            // 
-            resources.ApplyResources(button1, "button1");
-            button1.Name = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            resources.ApplyResources(LogInMainButton, "LogInMainButton");
+            LogInMainButton.Name = "LogInMainButton";
+            LogInMainButton.UseVisualStyleBackColor = true;
+            LogInMainButton.Click += LogInMainButton_Click;
             // 
             // Applicants_Handbook
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(LogInMainButton);
+            Controls.Add(RegistrationMainButton);
             Name = "Applicants_Handbook";
             Load += Form1_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private TextBox textBox1;
-        private Button button1;
+        private Button RegistrationMainButton;
+        private Button LogInMainButton;
     }
 }
