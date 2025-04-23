@@ -24,7 +24,9 @@ namespace CourseWork
         public List<User> LoadUsers()
         {
             if (!File.Exists(FilePath))
-                return new List<User>();
+            { 
+                return new List<User>(); 
+            }
 
             string json = File.ReadAllText(FilePath);
             return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
@@ -41,7 +43,9 @@ namespace CourseWork
             var users = LoadUsers();
 
             if (users.Exists(u => u.user == username))
-                return false;
+            {
+                return false; 
+            }
 
             var hashed = HashPassword(password);
             string role = (username == AdminLogin && hashed == AdminPasswordHash) ? "admin" : "user";

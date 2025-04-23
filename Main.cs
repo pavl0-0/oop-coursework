@@ -31,5 +31,17 @@ namespace CourseWork
                 AdminFunctionsPanel.Visible = false;
             }
         }
+
+        private void AddAdminButton_Click(object sender, EventArgs e)
+        {
+            Admin adminAdd = new Admin();
+            adminAdd.Show();
+            this.Hide();
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
