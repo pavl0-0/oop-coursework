@@ -11,16 +11,12 @@ namespace CourseWork
     {
         public string Name { get; set; }
         public string Address { get; set; }
-        public string Specialties { get; set; }
+        public decimal Specialties { get; set; }
         public string LearnForm { get; set; }
 
-        public double MinDayMark { get; set; }
-        public double MinCorrespondenceMark { get; set; }
-        public double MinEveningMark { get; set; }
-
-        public double MaxDayMark { get; set; }
-        public double MaxCorrespondenceMark { get; set; }
-        public double MaxEveningMark { get; set; }
+        public decimal MinMark { get; set; }
+        public decimal MaxMark { get; set; }
+        public decimal Money { get; set; }
     }
 
     class UniversitiesMananger

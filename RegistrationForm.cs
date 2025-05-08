@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+using System.Security.Policy;
 
 namespace CourseWork
 {
@@ -28,19 +29,35 @@ namespace CourseWork
             var manager = new UserMananger();
             string login = NameRegText.Text;
             string password = PasswordRegText.Text;
+            string fullName = FullNameRegText.Text;
 
-            if (manager.Register(login, password))
+
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Заповніть усі поля.");
+                return;
+            }
+
+            if (password != RepeatPasswordText.Text)
+            {
+                MessageBox.Show("Паролі не співпадають.");
+                return;
+            }
+
+            if (manager.Register(login, password, fullName))
             {
                 MessageBox.Show("Реєстрація успішна!");
-                this.Close(); 
+
+                string role = (login == "admin" && manager.Login(login, password) == "admin") ? "admin" : "user";
+
+                Main main = new Main(role);
+                main.Show();
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("Такий користувач вже існує.");
+                MessageBox.Show("Користувач з таким логіном вже існує.");
             }
-            Main main = new Main("user");
-            main.Show();
-            this.Hide();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace CourseWork
         public string user { get; set; }
         public string password { get; set; }
         public string role { get; set; }
+        public string fullName { get; set; }
     }
 
     class UserMananger
@@ -38,28 +39,36 @@ namespace CourseWork
             File.WriteAllText(FilePath, json);
         }
 
-        public bool Register(string username, string password)
+        public bool Register(string username, string password, string fullName)
         {
             var users = LoadUsers();
+            var hashed = HashPassword(password);
 
-            if (users.Exists(u => u.user == username))
+            if (username.ToLower() == AdminLogin && hashed != AdminPasswordHash)
             {
-                return false; 
+                return false;
             }
 
-            var hashed = HashPassword(password);
+            if (users.Exists(u => u.user.Equals(username, StringComparison.OrdinalIgnoreCase)))
+            {
+                return false;
+            }
+
             string role = (username == AdminLogin && hashed == AdminPasswordHash) ? "admin" : "user";
 
             users.Add(new User
             {
                 user = username,
                 password = hashed,
-                role = role
+                role = role,
+                fullName = fullName
             });
 
             SaveUsers(users);
             return true;
         }
+
+
 
         public string Login(string username, string password)
         {
@@ -73,7 +82,7 @@ namespace CourseWork
             }
 
             var users = LoadUsers();
-            var user = users.FirstOrDefault(u => u.user == username && u.password == hashed);
+            var user = users.FirstOrDefault(u => u.user == username);
 
             return user?.role;
         }
