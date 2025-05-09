@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    class Universities
+    class Universities : Location
     {
         public string Name { get; set; }
-        public string Address { get; set; }
-        public decimal Specialties { get; set; }
+        public int Specialties { get; set; }
         public string LearnForm { get; set; }
 
         public decimal MinMark { get; set; }

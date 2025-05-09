@@ -20,6 +20,29 @@ namespace CourseWork
             InitializeComponent();
             AdminEditPanel.Visible = false; 
             AdminEditButton.Visible = false;
+
+            LoadUniqueCitiesToComboBox();
+        }
+
+        private void LoadUniqueCitiesToComboBox()
+        {
+            string jsonPath = "universities_database.json";
+            if (!File.Exists(jsonPath))
+                return;
+
+            var universities = JsonConvert.DeserializeObject<List<Universities>>(File.ReadAllText(jsonPath));
+
+            var uniqueCities = universities
+                .Select(u => u.City)
+                .Where(c => !string.IsNullOrWhiteSpace(c))
+                .Distinct()
+                .OrderBy(c => c)
+                .ToList();
+
+            AdminCityComboBox.Items.Clear();
+            AdminCityComboBox.Items.AddRange(uniqueCities.ToArray());
+            EditCityComboBox.Items.Clear();
+            EditCityComboBox.Items.AddRange(uniqueCities.ToArray());
         }
 
         private void SaveAdminButton_Click(object sender, EventArgs e)
@@ -35,6 +58,7 @@ namespace CourseWork
                 return;
             }
 
+            string city = AdminCityComboBox.Text.Trim(); 
             string form = FormComboBox.SelectedItem?.ToString() ?? "";
             if (string.IsNullOrWhiteSpace(form))
             {
@@ -47,11 +71,13 @@ namespace CourseWork
                 MessageBox.Show("Введіть коректну суму грошей за навчання");
                 return;
             }
-            decimal.TryParse(MinMarkAdminBox.Text, out decimal specialty);
+
+            int.TryParse(SpecialtyAdminBox.Text, out int specialty);
 
             var newUniversity = new Universities
             {
                 Name = nameAdminBox.Text,
+                City = city,
                 Address = AddressAdminBox.Text,
                 Specialties = specialty,
                 LearnForm = form,
@@ -70,11 +96,15 @@ namespace CourseWork
         private void ClearButtonAdmin_Click(object sender, EventArgs e)
         {
             nameAdminBox.Text = "";
+            AdminCityComboBox.SelectedIndex = -1;
+            AdminCityComboBox.Text = "";
             AddressAdminBox.Text = "";
             SpecialtyAdminBox.Text = "";
             FormComboBox.SelectedIndex = -1;
             MinMarkAdminBox.Text = "";
             MaxMarkAdminBox.Text = "";
+            MinMoneyAdminBox.Text = "";
+            MaxMoneyAdminBox.Text = "";
             MoneyAdminBox.Text = "";
         }
 
@@ -95,26 +125,32 @@ namespace CourseWork
             string searchSpecialty = SpecialtyAdminBox.Text.Trim();
             string searchMinMark = MinMarkAdminBox.Text.Trim();
             string searchMaxMark = MaxMarkAdminBox.Text.Trim();
-            string searchMoney = MoneyAdminBox.Text.Trim();
+            string searchMinMoney = MinMoneyAdminBox.Text.Trim();
+            string searchMaxMoney = MaxMoneyAdminBox.Text.Trim();
             string searchForm = FormComboBox.Text.Trim().ToLower();
+            string searchCity = AdminCityComboBox.Text.Trim().ToLower();
 
-            decimal specialtyValue;
+            int specialtyValue;
             decimal minMarkValue = 0;
             decimal maxMarkValue = 0;
-            decimal moneyValue = 0;
+            decimal minMoneyValue = 0;
+            decimal maxMoneyValue = 0;
 
-            bool isSpecialtyValid = decimal.TryParse(searchSpecialty, out specialtyValue);
+            bool isSpecialtyValid = int.TryParse(searchSpecialty, out specialtyValue);
             bool isMinMarkValid = decimal.TryParse(searchMinMark, out minMarkValue);
             bool isMaxMarkValid = decimal.TryParse(searchMaxMark, out maxMarkValue);
-            bool isMoneyValid = decimal.TryParse(searchMoney, out moneyValue);
+            bool isMinMoneyValid = decimal.TryParse(searchMinMoney, out minMoneyValue);
+            bool isMaxMoneyValid = decimal.TryParse(searchMaxMoney, out maxMoneyValue);
 
             var filteredUniversities = universities.Where(u =>
                 (string.IsNullOrEmpty(searchName) || u.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase)) &&
                 (string.IsNullOrEmpty(searchSpecialty) || (isSpecialtyValid && u.Specialties == specialtyValue)) &&
                 (string.IsNullOrEmpty(searchAddress) || u.Address.Equals(searchAddress, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(searchCity) || u.City.Equals(searchCity, StringComparison.OrdinalIgnoreCase)) &&
                 (string.IsNullOrEmpty(searchMinMark) || (isMinMarkValid && u.MinMark >= minMarkValue)) &&
                 (string.IsNullOrEmpty(searchMaxMark) || (isMaxMarkValid && u.MaxMark <= maxMarkValue)) &&
-                (string.IsNullOrEmpty(searchMoney) || (isMoneyValid && u.Money <= moneyValue)) &&
+                (string.IsNullOrEmpty(searchMinMoney) || u.Money >= minMoneyValue) &&
+                (string.IsNullOrEmpty(searchMaxMoney) || u.Money <= maxMoneyValue) &&
                 (string.IsNullOrEmpty(searchForm) || u.LearnForm.Equals(searchForm, StringComparison.OrdinalIgnoreCase))
             ).ToList();
 
@@ -143,12 +179,13 @@ namespace CourseWork
             panel.Size = new Size(700, 250);
 
             var labelName = new Label { Name = "NameUniv", AutoSize = true, Location = new Point(10, 10) };
-            var labelAddress = new Label { Name = "Address", AutoSize = true, Location = new Point(10, 40) };
-            var labelSpecialty = new Label { Name = "Specialty", AutoSize = true, Location = new Point(10, 70) };
-            var labelMinMark = new Label { Name = "MinMark", AutoSize = true, Location = new Point(10, 100) };
-            var labelMaxMark = new Label { Name = "MaxMark", AutoSize = true, Location = new Point(10, 130) };
-            var labelForm = new Label { Name = "LearnForm", AutoSize = true, Location = new Point(10, 160) };
-            var labelTuitionFee = new Label { Name = "Money", AutoSize = true, Location = new Point(10, 190) };
+            var labelCity = new Label { Name = "City", AutoSize = true, Location = new Point(10, 40) };
+            var labelAddress = new Label { Name = "Address", AutoSize = true, Location = new Point(10, 70) };
+            var labelSpecialty = new Label { Name = "Specialty", AutoSize = true, Location = new Point(10, 100) };
+            var labelMinMark = new Label { Name = "MinMark", AutoSize = true, Location = new Point(10, 130) };
+            var labelMaxMark = new Label { Name = "MaxMark", AutoSize = true, Location = new Point(10, 160) };
+            var labelForm = new Label { Name = "LearnForm", AutoSize = true, Location = new Point(10, 190) };
+            var labelTuitionFee = new Label { Name = "Money", AutoSize = true, Location = new Point(10, 220) };
 
             var editButton = new Button
             {
@@ -166,7 +203,7 @@ namespace CourseWork
 
             panel.Controls.AddRange(new Control[]
             {
-                labelName, labelAddress, labelSpecialty, labelMinMark,
+                labelName, labelCity, labelAddress, labelSpecialty, labelMinMark,
                 labelMaxMark, labelForm, labelTuitionFee, editButton, deleteButton
             });
 
@@ -192,6 +229,9 @@ namespace CourseWork
         {
             if (panel.Controls["NameUniv"] is Label name)
                 name.Text = $"Назва ВНЗ: {university.Name}";
+
+            if (panel.Controls["City"] is Label city)
+                city.Text = $"Місто: {university.City}";
 
             if (panel.Controls["Address"] is Label address)
                 address.Text = $"Адреса: {university.Address}";
@@ -230,6 +270,7 @@ namespace CourseWork
                             SpecialtyEditAdminBox.Text = university.Specialties.ToString();
                             MinMarkEditAdminBox.Text = university.MinMark.ToString();
                             MaxMarkEditAdminBox.Text = university.MaxMark.ToString();
+                            EditCityComboBox.Text = university.City;
                             MoneyEditAdminBox.Text = university.Money.ToString();
                             FormEditComboBox.Text = university.LearnForm;
                         };
@@ -264,10 +305,13 @@ namespace CourseWork
                 if (!string.IsNullOrEmpty(nameEditAdminBox.Text) && nameEditAdminBox.Text != universityBeingEdited.Name)
                     target.Name = nameEditAdminBox.Text;
 
+                if (!string.IsNullOrEmpty(EditCityComboBox.Text) && EditCityComboBox.Text != universityBeingEdited.City)
+                    target.City = EditCityComboBox.Text;
+
                 if (!string.IsNullOrEmpty(AddressEditAdminBox.Text) && AddressEditAdminBox.Text != universityBeingEdited.Address)
                     target.Address = AddressEditAdminBox.Text;
 
-                if (decimal.TryParse(SpecialtyEditAdminBox.Text, out decimal specialty) && specialty != universityBeingEdited.Specialties)
+                if (int.TryParse(SpecialtyEditAdminBox.Text, out int specialty) && specialty != universityBeingEdited.Specialties)
                     target.Specialties = specialty;
 
                 if (decimal.TryParse(MinMarkEditAdminBox.Text, out decimal minMark) && minMark != universityBeingEdited.MinMark)
@@ -286,6 +330,8 @@ namespace CourseWork
                 MessageBox.Show("Дані успішно оновлено.");
 
                 nameEditAdminBox.Text = "";
+                EditCityComboBox.SelectedIndex = -1;
+                EditCityComboBox.Text = "";
                 AddressEditAdminBox.Text = "";
                 SpecialtyEditAdminBox.Text = "";
                 FormEditComboBox.SelectedIndex = -1;
@@ -294,11 +340,15 @@ namespace CourseWork
                 MoneyEditAdminBox.Text = "";
 
                 nameAdminBox.Text = "";
+                AdminCityComboBox.SelectedIndex = -1;
+                AdminCityComboBox.Text = "";
                 AddressAdminBox.Text = "";
                 SpecialtyAdminBox.Text = "";
                 FormComboBox.SelectedIndex = -1;
                 MinMarkAdminBox.Text = "";
                 MaxMarkAdminBox.Text = "";
+                MinMoneyAdminBox.Text = "";
+                MaxMoneyAdminBox.Text = "";
                 MoneyAdminBox.Text = "";
             }
 
@@ -310,6 +360,8 @@ namespace CourseWork
         private void CleanEdit_Click(object sender, EventArgs e)
         {
             nameEditAdminBox.Text = "";
+            EditCityComboBox.SelectedIndex = -1;
+            EditCityComboBox.Text = "";
             AddressEditAdminBox.Text = "";
             SpecialtyEditAdminBox.Text = "";
             FormEditComboBox.SelectedIndex = -1;

@@ -82,7 +82,7 @@ namespace CourseWork
             }
 
             var users = LoadUsers();
-            var user = users.FirstOrDefault(u => u.user == username);
+            var user = users.FirstOrDefault(u => u.user == username && u.password == hashed);
 
             return user?.role;
         }

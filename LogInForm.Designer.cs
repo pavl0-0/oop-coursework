@@ -40,7 +40,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(383, 104);
+            label1.Location = new Point(382, 119);
             label1.Name = "label1";
             label1.Size = new Size(37, 20);
             label1.TabIndex = 0;
@@ -49,16 +49,17 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(304, 133);
+            label2.Location = new Point(228, 165);
             label2.Name = "label2";
             label2.Size = new Size(35, 20);
             label2.TabIndex = 1;
             label2.Text = "Ім'я";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(304, 204);
+            label3.Location = new Point(228, 210);
             label3.Name = "label3";
             label3.Size = new Size(62, 20);
             label3.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(323, 272);
+            button1.Location = new Point(325, 258);
             button1.Name = "button1";
             button1.Size = new Size(150, 50);
             button1.TabIndex = 3;
@@ -76,14 +77,15 @@
             // 
             // NameLogText
             // 
-            NameLogText.Location = new Point(304, 156);
+            NameLogText.Location = new Point(306, 162);
             NameLogText.Name = "NameLogText";
             NameLogText.Size = new Size(188, 27);
             NameLogText.TabIndex = 4;
+            NameLogText.TextChanged += NameLogText_TextChanged;
             // 
             // PasswordLogText
             // 
-            PasswordLogText.Location = new Point(304, 227);
+            PasswordLogText.Location = new Point(306, 207);
             PasswordLogText.Name = "PasswordLogText";
             PasswordLogText.Size = new Size(188, 27);
             PasswordLogText.TabIndex = 5;
@@ -91,7 +93,7 @@
             // RegLabel
             // 
             RegLabel.AutoSize = true;
-            RegLabel.Location = new Point(271, 325);
+            RegLabel.Location = new Point(272, 311);
             RegLabel.Name = "RegLabel";
             RegLabel.Size = new Size(256, 20);
             RegLabel.TabIndex = 6;
