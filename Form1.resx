@@ -117,19 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RegistrationMainButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="RegistrationMainButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 14pt, style=Bold</value>
+  </data>
   <data name="RegistrationMainButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 115</value>
+    <value>180, 250</value>
   </data>
   <data name="RegistrationMainButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 72</value>
+    <value>220, 65</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="RegistrationMainButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="RegistrationMainButton.Text" xml:space="preserve">
-    <value>Зареєструвтаися</value>
+    <value>Зареєструватися</value>
   </data>
   <data name="&gt;&gt;RegistrationMainButton.Name" xml:space="preserve">
     <value>RegistrationMainButton</value>
@@ -141,17 +148,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;RegistrationMainButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LogInMainButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="LogInMainButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 14pt, style=Bold</value>
+  </data>
   <data name="LogInMainButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="LogInMainButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 226</value>
+    <value>400, 250</value>
   </data>
   <data name="LogInMainButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 72</value>
+    <value>220, 65</value>
   </data>
   <data name="LogInMainButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -169,6 +181,36 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LogInMainButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mainTitleLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mainTitleLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 30pt, style=Bold</value>
+  </data>
+  <data name="mainTitleLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 80</value>
+  </data>
+  <data name="mainTitleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>557, 67</value>
+  </data>
+  <data name="mainTitleLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="mainTitleLabel.Text" xml:space="preserve">
+    <value>Довідник Абітурієнта</value>
+  </data>
+  <data name="&gt;&gt;mainTitleLabel.Name" xml:space="preserve">
+    <value>mainTitleLabel</value>
+  </data>
+  <data name="&gt;&gt;mainTitleLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainTitleLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainTitleLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -178,10 +220,10 @@
     <value>8, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>489, 444</value>
+    <value>800, 450</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Довідник абітурієнта</value>
+    <value>Довідник Абітурієнта</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Applicants_Handbook</value>

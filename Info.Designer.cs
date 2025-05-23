@@ -2,15 +2,8 @@
 {
     partial class Info
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,88 +13,125 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
+            labelNameFull = new Label();
+            labelAddressFull = new Label();
+            labelSpecialtiesFull = new Label();
+            labelMarksFull = new Label();
+            labelLearnFormFull = new Label();
+            labelMoneyFull = new Label();
+            textBoxDescriptionFull = new TextBox();
+            pictureBoxUniversity = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUniversity).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // labelNameFull
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(275, 144);
-            label1.Name = "label1";
-            label1.Size = new Size(86, 20);
-            label1.TabIndex = 10;
-            label1.Text = "Назва ВНЗ:";
+            labelNameFull.AutoSize = true;
+            labelNameFull.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            labelNameFull.Location = new Point(20, 20);
+            labelNameFull.Name = "labelNameFull";
+            labelNameFull.Size = new Size(141, 28);
+            labelNameFull.TabIndex = 0;
+            labelNameFull.Text = "Повна назва:";
             // 
-            // label2
+            // labelAddressFull
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(275, 203);
-            label2.Name = "label2";
-            label2.Size = new Size(109, 20);
-            label2.TabIndex = 11;
-            label2.Text = "Спеціальність:";
+            labelAddressFull.AutoSize = true;
+            labelAddressFull.Location = new Point(20, 60);
+            labelAddressFull.Name = "labelAddressFull";
+            labelAddressFull.Size = new Size(109, 20);
+            labelAddressFull.TabIndex = 1;
+            labelAddressFull.Text = "Повна адреса:";
             // 
-            // label3
+            // labelSpecialtiesFull
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(275, 267);
-            label3.Name = "label3";
-            label3.Size = new Size(163, 20);
-            label3.TabIndex = 12;
-            label3.Text = "Мінімальний конкурс:";
+            labelSpecialtiesFull.AutoSize = true;
+            labelSpecialtiesFull.Location = new Point(20, 100);
+            labelSpecialtiesFull.Name = "labelSpecialtiesFull";
+            labelSpecialtiesFull.Size = new Size(153, 20);
+            labelSpecialtiesFull.TabIndex = 2;
+            labelSpecialtiesFull.Text = "Повні спеціальності:";
             // 
-            // label4
+            // labelMarksFull
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(561, 267);
-            label4.Name = "label4";
-            label4.Size = new Size(177, 20);
-            label4.TabIndex = 13;
-            label4.Text = "Максимальний конкурс:";
+            labelMarksFull.AutoSize = true;
+            labelMarksFull.Location = new Point(20, 140);
+            labelMarksFull.Name = "labelMarksFull";
+            labelMarksFull.Size = new Size(125, 20);
+            labelMarksFull.TabIndex = 3;
+            labelMarksFull.Text = "Повні бали ЗНО:";
             // 
-            // label5
+            // labelLearnFormFull
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(275, 335);
-            label5.Name = "label5";
-            label5.Size = new Size(131, 20);
-            label5.TabIndex = 14;
-            label5.Text = "Форма навчання:";
+            labelLearnFormFull.AutoSize = true;
+            labelLearnFormFull.Location = new Point(20, 180);
+            labelLearnFormFull.Name = "labelLearnFormFull";
+            labelLearnFormFull.Size = new Size(179, 20);
+            labelLearnFormFull.TabIndex = 4;
+            labelLearnFormFull.Text = "Повна форма навчання:";
+            // 
+            // labelMoneyFull
+            // 
+            labelMoneyFull.AutoSize = true;
+            labelMoneyFull.Location = new Point(20, 220);
+            labelMoneyFull.Name = "labelMoneyFull";
+            labelMoneyFull.Size = new Size(151, 20);
+            labelMoneyFull.TabIndex = 5;
+            labelMoneyFull.Text = "Повна вартість (рік):";
+            // 
+            // textBoxDescriptionFull
+            // 
+            textBoxDescriptionFull.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxDescriptionFull.Location = new Point(20, 260);
+            textBoxDescriptionFull.Multiline = true;
+            textBoxDescriptionFull.Name = "textBoxDescriptionFull";
+            textBoxDescriptionFull.ReadOnly = true;
+            textBoxDescriptionFull.ScrollBars = ScrollBars.Vertical;
+            textBoxDescriptionFull.Size = new Size(1442, 220);
+            textBoxDescriptionFull.TabIndex = 6;
+            textBoxDescriptionFull.Text = "Повний опис...";
+            // 
+            // pictureBoxUniversity
+            // 
+            pictureBoxUniversity.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBoxUniversity.BorderStyle = BorderStyle.FixedSingle;
+            pictureBoxUniversity.Location = new Point(1162, 20);
+            pictureBoxUniversity.Name = "pictureBoxUniversity";
+            pictureBoxUniversity.Size = new Size(300, 200);
+            pictureBoxUniversity.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxUniversity.TabIndex = 7;
+            pictureBoxUniversity.TabStop = false;
             // 
             // Info
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1202, 563);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            ClientSize = new Size(1482, 500);
+            Controls.Add(pictureBoxUniversity);
+            Controls.Add(textBoxDescriptionFull);
+            Controls.Add(labelMoneyFull);
+            Controls.Add(labelLearnFormFull);
+            Controls.Add(labelMarksFull);
+            Controls.Add(labelSpecialtiesFull);
+            Controls.Add(labelAddressFull);
+            Controls.Add(labelNameFull);
             Name = "Info";
-            Text = "Info";
+            Text = "Деталі університету";
+            Load += Info_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUniversity).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        #endregion
-
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
+        private System.Windows.Forms.Label labelNameFull;
+        private System.Windows.Forms.Label labelAddressFull;
+        private System.Windows.Forms.Label labelSpecialtiesFull;
+        private System.Windows.Forms.Label labelMarksFull;
+        private System.Windows.Forms.Label labelLearnFormFull;
+        private System.Windows.Forms.Label labelMoneyFull;
+        private System.Windows.Forms.TextBox textBoxDescriptionFull;
+        private System.Windows.Forms.PictureBox pictureBoxUniversity;
     }
 }

@@ -26,3 +26,6 @@ G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.Info.resources
 G:\CourseWork\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.csproj.AssemblyReference.cache
 G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.csproj.Up2Date
+G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.Properties.Resources.resources
+G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.EditProfileForm.resources
+G:\CourseWork\obj\Debug\net8.0-windows\CourseWork.SavedUniversitiesForm.resources

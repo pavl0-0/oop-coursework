@@ -1,63 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.Json;
-using System.Security.Policy;
 
 namespace CourseWork
 {
     public partial class RegistrationForm : Form
     {
+        private UserMananger userManager;
+
         public RegistrationForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            userManager = new UserMananger();
+            this.FormClosing += RegistrationForm_FormClosing;
         }
 
         private void RegistrationButton_Click(object sender, EventArgs e)
         {
-            var manager = new UserMananger();
-            string login = NameRegText.Text;
+            string username = NameRegText.Text;
             string password = PasswordRegText.Text;
+            string repeatPassword = RepeatPasswordText.Text;
             string fullName = FullNameRegText.Text;
 
-
-            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(repeatPassword) || string.IsNullOrWhiteSpace(fullName))
             {
-                MessageBox.Show("Заповніть усі поля.");
+                MessageBox.Show("Будь ласка, заповніть усі поля.", "Помилка реєстрації", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (password != RepeatPasswordText.Text)
+            if (password != repeatPassword)
             {
-                MessageBox.Show("Паролі не співпадають.");
+                MessageBox.Show("Паролі не співпадають.", "Помилка реєстрації", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (manager.Register(login, password, fullName))
+            if (userManager.Register(username, password, fullName))
             {
-                MessageBox.Show("Реєстрація успішна!");
+                MessageBox.Show("Реєстрація успішна!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                string role = (login == "admin" && manager.Login(login, password) == "admin") ? "admin" : "user";
+                CurrentUser.Username = username;
+                CurrentUser.Role = userManager.Login(username, password);
+                CurrentUser.FullName = fullName;
 
-                Main main = new Main(role);
-                main.Show();
+                Main mainForm = new Main(CurrentUser.Role);
+                mainForm.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Користувач з таким логіном вже існує.");
+                MessageBox.Show("Користувач з таким іменем вже існує або дані недійсні.", "Помилка реєстрації", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void RegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете вийти з програми?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void LogLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LogInForm logForm = new LogInForm();
+            logForm.Show();
+            this.Hide();
         }
     }
 }

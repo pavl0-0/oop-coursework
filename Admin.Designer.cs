@@ -51,6 +51,23 @@
             CleanEdit = new Button();
             SaveEdit = new Button();
             AdminPanel = new Panel();
+            FullSpecialtiesAdmintextBox = new TextBox();
+            label38 = new Label();
+            DescriptionAdmintextBox = new TextBox();
+            FullMoneyAdmintextBox = new TextBox();
+            FullFormAdmintextBox = new TextBox();
+            FullMarksAdmintextBox = new TextBox();
+            FullAddressAdmintextBox = new TextBox();
+            label29 = new Label();
+            FullNameAdmintextBox = new TextBox();
+            FotoUnivAdminpictureBox = new PictureBox();
+            label28 = new Label();
+            label27 = new Label();
+            label26 = new Label();
+            label25 = new Label();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
             MoneyAdminBox = new TextBox();
             label15 = new Label();
             AdminCityComboBox = new ComboBox();
@@ -63,14 +80,31 @@
             MinMoneyAdminBox = new TextBox();
             label22 = new Label();
             AdminEditPanel = new Panel();
+            FullSpecialtiesEdittextBox = new TextBox();
+            label39 = new Label();
+            DescriptionEdittextBox = new TextBox();
+            FullMoneyEdittextBox = new TextBox();
+            FullFormEdittextBox = new TextBox();
+            FullMarksEdittextBox = new TextBox();
+            FullAddressEdittextBox = new TextBox();
+            FullNameEdittextBox = new TextBox();
+            label30 = new Label();
             EditCityComboBox = new ComboBox();
             label23 = new Label();
+            FotoUnivEditpictureBox = new PictureBox();
             label8 = new Label();
+            label31 = new Label();
+            label37 = new Label();
             label9 = new Label();
+            label32 = new Label();
             label10 = new Label();
+            label36 = new Label();
             label11 = new Label();
+            label33 = new Label();
             MoneyEditAdminBox = new TextBox();
+            label35 = new Label();
             label12 = new Label();
+            label34 = new Label();
             label13 = new Label();
             FormEditComboBox = new ComboBox();
             AddressEditAdminBox = new TextBox();
@@ -79,10 +113,17 @@
             MaxMarkEditAdminBox = new TextBox();
             nameEditAdminBox = new TextBox();
             SpecialtyEditAdminBox = new TextBox();
+            panel1 = new Panel();
+            labelCurrentUserAdmin = new Label();
+            buttonEditProfileAdmin = new Button();
+            buttonLogoutAdmin = new Button();
             AdminPanelButton.SuspendLayout();
             AdminEditButton.SuspendLayout();
             AdminPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)FotoUnivAdminpictureBox).BeginInit();
             AdminEditPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)FotoUnivEditpictureBox).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // nameAdminBox
@@ -115,7 +156,6 @@
             // 
             // FormComboBox
             // 
-            FormComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             FormComboBox.FormattingEnabled = true;
             FormComboBox.Items.AddRange(new object[] { "Денна", "Заочна", "Вечірня" });
             FormComboBox.Location = new Point(187, 310);
@@ -176,6 +216,13 @@
             SaveAdminButton.TabIndex = 21;
             SaveAdminButton.Text = "Зберегти дані";
             SaveAdminButton.UseVisualStyleBackColor = true;
+            // Admin Panel Button Styling
+            SaveAdminButton.BackColor = Color.SteelBlue;
+            SaveAdminButton.FlatAppearance.BorderSize = 0;
+            SaveAdminButton.FlatStyle = FlatStyle.Flat;
+            SaveAdminButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            SaveAdminButton.ForeColor = Color.White;
+            // End of Admin Panel Button Styling
             SaveAdminButton.Click += SaveAdminButton_Click;
             // 
             // ClearButtonAdmin
@@ -186,6 +233,13 @@
             ClearButtonAdmin.TabIndex = 22;
             ClearButtonAdmin.Text = "Очистити поля";
             ClearButtonAdmin.UseVisualStyleBackColor = true;
+            // Admin Panel Button Styling
+            ClearButtonAdmin.BackColor = Color.SteelBlue;
+            ClearButtonAdmin.FlatAppearance.BorderSize = 0;
+            ClearButtonAdmin.FlatStyle = FlatStyle.Flat;
+            ClearButtonAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ClearButtonAdmin.ForeColor = Color.White;
+            // End of Admin Panel Button Styling
             ClearButtonAdmin.Click += ClearButtonAdmin_Click;
             // 
             // ExitAdminButton
@@ -196,6 +250,13 @@
             ExitAdminButton.TabIndex = 23;
             ExitAdminButton.Text = "Вийти";
             ExitAdminButton.UseVisualStyleBackColor = true;
+            // Admin Panel Button Styling
+            ExitAdminButton.BackColor = Color.IndianRed;
+            ExitAdminButton.FlatAppearance.BorderSize = 0;
+            ExitAdminButton.FlatStyle = FlatStyle.Flat;
+            ExitAdminButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ExitAdminButton.ForeColor = Color.White;
+            // End of Admin Panel Button Styling
             ExitAdminButton.Click += ExitAdminButton_Click;
             // 
             // label6
@@ -220,7 +281,7 @@
             AdminPanelButton.Controls.Add(ExitAdminButton);
             AdminPanelButton.Controls.Add(ClearButtonAdmin);
             AdminPanelButton.Controls.Add(SaveAdminButton);
-            AdminPanelButton.Location = new Point(54, 544);
+            AdminPanelButton.Location = new Point(17, 497);
             AdminPanelButton.Name = "AdminPanelButton";
             AdminPanelButton.Size = new Size(1081, 88);
             AdminPanelButton.TabIndex = 28;
@@ -233,13 +294,20 @@
             SearchButtonAdmin.TabIndex = 29;
             SearchButtonAdmin.Text = "Пошук";
             SearchButtonAdmin.UseVisualStyleBackColor = true;
+            // Admin Panel Button Styling
+            SearchButtonAdmin.BackColor = Color.ForestGreen;
+            SearchButtonAdmin.FlatAppearance.BorderSize = 0;
+            SearchButtonAdmin.FlatStyle = FlatStyle.Flat;
+            SearchButtonAdmin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            SearchButtonAdmin.ForeColor = Color.White;
+            // End of Admin Panel Button Styling
             SearchButtonAdmin.Click += SearchButtonAdmin_Click;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(54, 638);
+            flowLayoutPanel1.Location = new Point(15, 598);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(745, 219);
             flowLayoutPanel1.TabIndex = 44;
@@ -250,7 +318,7 @@
             AdminEditButton.Controls.Add(ExitEdit);
             AdminEditButton.Controls.Add(CleanEdit);
             AdminEditButton.Controls.Add(SaveEdit);
-            AdminEditButton.Location = new Point(54, 545);
+            AdminEditButton.Location = new Point(17, 498);
             AdminEditButton.Name = "AdminEditButton";
             AdminEditButton.Size = new Size(882, 87);
             AdminEditButton.TabIndex = 45;
@@ -263,6 +331,13 @@
             ExitEdit.TabIndex = 23;
             ExitEdit.Text = "Вийти";
             ExitEdit.UseVisualStyleBackColor = true;
+            // Admin Edit Button Styling
+            ExitEdit.BackColor = Color.IndianRed;
+            ExitEdit.FlatAppearance.BorderSize = 0;
+            ExitEdit.FlatStyle = FlatStyle.Flat;
+            ExitEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ExitEdit.ForeColor = Color.White;
+            // End of Admin Edit Button Styling
             ExitEdit.Click += ExitEdit_Click;
             // 
             // CleanEdit
@@ -273,6 +348,13 @@
             CleanEdit.TabIndex = 22;
             CleanEdit.Text = "Очистити поля";
             CleanEdit.UseVisualStyleBackColor = true;
+            // Admin Edit Button Styling
+            CleanEdit.BackColor = Color.SteelBlue;
+            CleanEdit.FlatAppearance.BorderSize = 0;
+            CleanEdit.FlatStyle = FlatStyle.Flat;
+            CleanEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            CleanEdit.ForeColor = Color.White;
+            // End of Admin Edit Button Styling
             CleanEdit.Click += CleanEdit_Click;
             // 
             // SaveEdit
@@ -283,10 +365,35 @@
             SaveEdit.TabIndex = 21;
             SaveEdit.Text = "Зберегти дані";
             SaveEdit.UseVisualStyleBackColor = true;
+            // Admin Edit Button Styling
+            SaveEdit.BackColor = Color.SteelBlue;
+            SaveEdit.FlatAppearance.BorderSize = 0;
+            SaveEdit.FlatStyle = FlatStyle.Flat;
+            SaveEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            SaveEdit.ForeColor = Color.White;
+            // End of Admin Edit Button Styling
             SaveEdit.Click += SaveEdit_Click;
             // 
             // AdminPanel
             // 
+            AdminPanel.AutoScroll = true;
+            AdminPanel.Controls.Add(FullSpecialtiesAdmintextBox);
+            AdminPanel.Controls.Add(label38);
+            AdminPanel.Controls.Add(DescriptionAdmintextBox);
+            AdminPanel.Controls.Add(FullMoneyAdmintextBox);
+            AdminPanel.Controls.Add(FullFormAdmintextBox);
+            AdminPanel.Controls.Add(FullMarksAdmintextBox);
+            AdminPanel.Controls.Add(FullAddressAdmintextBox);
+            AdminPanel.Controls.Add(label29);
+            AdminPanel.Controls.Add(FullNameAdmintextBox);
+            AdminPanel.Controls.Add(FotoUnivAdminpictureBox);
+            AdminPanel.Controls.Add(label28);
+            AdminPanel.Controls.Add(label27);
+            AdminPanel.Controls.Add(label26);
+            AdminPanel.Controls.Add(label25);
+            AdminPanel.Controls.Add(label18);
+            AdminPanel.Controls.Add(label17);
+            AdminPanel.Controls.Add(label16);
             AdminPanel.Controls.Add(MoneyAdminBox);
             AdminPanel.Controls.Add(label15);
             AdminPanel.Controls.Add(AdminCityComboBox);
@@ -310,10 +417,156 @@
             AdminPanel.Controls.Add(MaxMarkAdminBox);
             AdminPanel.Controls.Add(nameAdminBox);
             AdminPanel.Controls.Add(SpecialtyAdminBox);
-            AdminPanel.Location = new Point(54, 42);
+            AdminPanel.Location = new Point(15, 12);
             AdminPanel.Name = "AdminPanel";
-            AdminPanel.Size = new Size(622, 463);
+            AdminPanel.Size = new Size(628, 467);
             AdminPanel.TabIndex = 46;
+            // 
+            // FullSpecialtiesAdmintextBox
+            // 
+            FullSpecialtiesAdmintextBox.Location = new Point(186, 576);
+            FullSpecialtiesAdmintextBox.Multiline = true;
+            FullSpecialtiesAdmintextBox.Name = "FullSpecialtiesAdmintextBox";
+            FullSpecialtiesAdmintextBox.Size = new Size(408, 27);
+            FullSpecialtiesAdmintextBox.TabIndex = 85;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Location = new Point(32, 579);
+            label38.Name = "label38";
+            label38.Size = new Size(148, 20);
+            label38.TabIndex = 84;
+            label38.Text = "Опис спеціальності:";
+            // 
+            // DescriptionAdmintextBox
+            // 
+            DescriptionAdmintextBox.Location = new Point(178, 794);
+            DescriptionAdmintextBox.Multiline = true;
+            DescriptionAdmintextBox.Name = "DescriptionAdmintextBox";
+            DescriptionAdmintextBox.Size = new Size(416, 27);
+            DescriptionAdmintextBox.TabIndex = 83;
+            // 
+            // FullMoneyAdmintextBox
+            // 
+            FullMoneyAdmintextBox.Location = new Point(296, 739);
+            FullMoneyAdmintextBox.Multiline = true;
+            FullMoneyAdmintextBox.Name = "FullMoneyAdmintextBox";
+            FullMoneyAdmintextBox.Size = new Size(298, 27);
+            FullMoneyAdmintextBox.TabIndex = 82;
+            // 
+            // FullFormAdmintextBox
+            // 
+            FullFormAdmintextBox.Location = new Point(209, 681);
+            FullFormAdmintextBox.Multiline = true;
+            FullFormAdmintextBox.Name = "FullFormAdmintextBox";
+            FullFormAdmintextBox.Size = new Size(385, 27);
+            FullFormAdmintextBox.TabIndex = 81;
+            // 
+            // FullMarksAdmintextBox
+            // 
+            FullMarksAdmintextBox.Location = new Point(227, 626);
+            FullMarksAdmintextBox.Multiline = true;
+            FullMarksAdmintextBox.Name = "FullMarksAdmintextBox";
+            FullMarksAdmintextBox.Size = new Size(367, 27);
+            FullMarksAdmintextBox.TabIndex = 80;
+            // 
+            // FullAddressAdmintextBox
+            // 
+            FullAddressAdmintextBox.Location = new Point(171, 526);
+            FullAddressAdmintextBox.Multiline = true;
+            FullAddressAdmintextBox.Name = "FullAddressAdmintextBox";
+            FullAddressAdmintextBox.Size = new Size(423, 27);
+            FullAddressAdmintextBox.TabIndex = 79;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(172, 1025);
+            label29.Name = "label29";
+            label29.Size = new Size(0, 20);
+            label29.TabIndex = 67;
+            // 
+            // FullNameAdmintextBox
+            // 
+            FullNameAdmintextBox.Location = new Point(171, 473);
+            FullNameAdmintextBox.Multiline = true;
+            FullNameAdmintextBox.Name = "FullNameAdmintextBox";
+            FullNameAdmintextBox.Size = new Size(423, 27);
+            FullNameAdmintextBox.TabIndex = 78;
+            // 
+            // FotoUnivAdminpictureBox
+            // 
+            FotoUnivAdminpictureBox.BackColor = SystemColors.ActiveBorder;
+            FotoUnivAdminpictureBox.Location = new Point(178, 843);
+            FotoUnivAdminpictureBox.Name = "FotoUnivAdminpictureBox";
+            FotoUnivAdminpictureBox.Size = new Size(155, 139);
+            FotoUnivAdminpictureBox.TabIndex = 66;
+            FotoUnivAdminpictureBox.TabStop = false;
+            FotoUnivAdminpictureBox.Click += FotoUnivAdminpictureBox_Click;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(32, 962);
+            label28.Name = "label28";
+            label28.Size = new Size(79, 20);
+            label28.TabIndex = 65;
+            label28.Text = "Фото ВНЗ:";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(32, 797);
+            label27.Name = "label27";
+            label27.Size = new Size(140, 20);
+            label27.TabIndex = 64;
+            label27.Text = "Опис університету:";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(32, 742);
+            label26.Name = "label26";
+            label26.Size = new Size(258, 20);
+            label26.TabIndex = 63;
+            label26.Text = "Вартість навчання за рік (контракт):";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(32, 684);
+            label25.Name = "label25";
+            label25.Size = new Size(171, 20);
+            label25.TabIndex = 62;
+            label25.Text = "Опис форми навчання:";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(31, 629);
+            label18.Name = "label18";
+            label18.Size = new Size(189, 20);
+            label18.TabIndex = 61;
+            label18.Text = "Дані про конкурсний бал:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(32, 529);
+            label17.Name = "label17";
+            label17.Size = new Size(109, 20);
+            label17.TabIndex = 60;
+            label17.Text = "Повна адреса:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(32, 476);
+            label16.Name = "label16";
+            label16.Size = new Size(133, 20);
+            label16.TabIndex = 59;
+            label16.Text = "Повна назва ВНЗ:";
             // 
             // MoneyAdminBox
             // 
@@ -410,15 +663,32 @@
             // 
             // AdminEditPanel
             // 
-            AdminEditPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            AdminEditPanel.AutoScroll = true;
+            AdminEditPanel.Controls.Add(FullSpecialtiesEdittextBox);
+            AdminEditPanel.Controls.Add(label39);
+            AdminEditPanel.Controls.Add(DescriptionEdittextBox);
+            AdminEditPanel.Controls.Add(FullMoneyEdittextBox);
+            AdminEditPanel.Controls.Add(FullFormEdittextBox);
+            AdminEditPanel.Controls.Add(FullMarksEdittextBox);
+            AdminEditPanel.Controls.Add(FullAddressEdittextBox);
+            AdminEditPanel.Controls.Add(FullNameEdittextBox);
+            AdminEditPanel.Controls.Add(label30);
             AdminEditPanel.Controls.Add(EditCityComboBox);
             AdminEditPanel.Controls.Add(label23);
+            AdminEditPanel.Controls.Add(FotoUnivEditpictureBox);
             AdminEditPanel.Controls.Add(label8);
+            AdminEditPanel.Controls.Add(label31);
+            AdminEditPanel.Controls.Add(label37);
             AdminEditPanel.Controls.Add(label9);
+            AdminEditPanel.Controls.Add(label32);
             AdminEditPanel.Controls.Add(label10);
+            AdminEditPanel.Controls.Add(label36);
             AdminEditPanel.Controls.Add(label11);
+            AdminEditPanel.Controls.Add(label33);
             AdminEditPanel.Controls.Add(MoneyEditAdminBox);
+            AdminEditPanel.Controls.Add(label35);
             AdminEditPanel.Controls.Add(label12);
+            AdminEditPanel.Controls.Add(label34);
             AdminEditPanel.Controls.Add(label13);
             AdminEditPanel.Controls.Add(FormEditComboBox);
             AdminEditPanel.Controls.Add(AddressEditAdminBox);
@@ -427,10 +697,83 @@
             AdminEditPanel.Controls.Add(MaxMarkEditAdminBox);
             AdminEditPanel.Controls.Add(nameEditAdminBox);
             AdminEditPanel.Controls.Add(SpecialtyEditAdminBox);
-            AdminEditPanel.Location = new Point(756, 42);
+            AdminEditPanel.Location = new Point(15, 72);
             AdminEditPanel.Name = "AdminEditPanel";
-            AdminEditPanel.Size = new Size(622, 409);
+            AdminEditPanel.Size = new Size(628, 407);
             AdminEditPanel.TabIndex = 47;
+            // 
+            // FullSpecialtiesEdittextBox
+            // 
+            FullSpecialtiesEdittextBox.Location = new Point(186, 530);
+            FullSpecialtiesEdittextBox.Multiline = true;
+            FullSpecialtiesEdittextBox.Name = "FullSpecialtiesEdittextBox";
+            FullSpecialtiesEdittextBox.Size = new Size(405, 27);
+            FullSpecialtiesEdittextBox.TabIndex = 87;
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.Location = new Point(32, 533);
+            label39.Name = "label39";
+            label39.Size = new Size(148, 20);
+            label39.TabIndex = 86;
+            label39.Text = "Опис спеціальності:";
+            // 
+            // DescriptionEdittextBox
+            // 
+            DescriptionEdittextBox.Location = new Point(177, 752);
+            DescriptionEdittextBox.Multiline = true;
+            DescriptionEdittextBox.Name = "DescriptionEdittextBox";
+            DescriptionEdittextBox.Size = new Size(414, 27);
+            DescriptionEdittextBox.TabIndex = 82;
+            // 
+            // FullMoneyEdittextBox
+            // 
+            FullMoneyEdittextBox.Location = new Point(299, 697);
+            FullMoneyEdittextBox.Multiline = true;
+            FullMoneyEdittextBox.Name = "FullMoneyEdittextBox";
+            FullMoneyEdittextBox.Size = new Size(292, 27);
+            FullMoneyEdittextBox.TabIndex = 81;
+            // 
+            // FullFormEdittextBox
+            // 
+            FullFormEdittextBox.Location = new Point(212, 647);
+            FullFormEdittextBox.Multiline = true;
+            FullFormEdittextBox.Name = "FullFormEdittextBox";
+            FullFormEdittextBox.Size = new Size(379, 27);
+            FullFormEdittextBox.TabIndex = 80;
+            // 
+            // FullMarksEdittextBox
+            // 
+            FullMarksEdittextBox.Location = new Point(230, 588);
+            FullMarksEdittextBox.Multiline = true;
+            FullMarksEdittextBox.Name = "FullMarksEdittextBox";
+            FullMarksEdittextBox.Size = new Size(361, 27);
+            FullMarksEdittextBox.TabIndex = 79;
+            // 
+            // FullAddressEdittextBox
+            // 
+            FullAddressEdittextBox.Location = new Point(184, 474);
+            FullAddressEdittextBox.Multiline = true;
+            FullAddressEdittextBox.Name = "FullAddressEdittextBox";
+            FullAddressEdittextBox.Size = new Size(407, 27);
+            FullAddressEdittextBox.TabIndex = 78;
+            // 
+            // FullNameEdittextBox
+            // 
+            FullNameEdittextBox.Location = new Point(184, 417);
+            FullNameEdittextBox.Multiline = true;
+            FullNameEdittextBox.Name = "FullNameEdittextBox";
+            FullNameEdittextBox.Size = new Size(407, 27);
+            FullNameEdittextBox.TabIndex = 77;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(165, 951);
+            label30.Name = "label30";
+            label30.Size = new Size(0, 20);
+            label30.TabIndex = 76;
             // 
             // EditCityComboBox
             // 
@@ -438,7 +781,7 @@
             EditCityComboBox.Items.AddRange(new object[] { "Денна", "Заочна", "Вечірня" });
             EditCityComboBox.Location = new Point(135, 71);
             EditCityComboBox.Name = "EditCityComboBox";
-            EditCityComboBox.Size = new Size(242, 28);
+            EditCityComboBox.Size = new Size(207, 28);
             EditCityComboBox.TabIndex = 34;
             // 
             // label23
@@ -450,6 +793,17 @@
             label23.TabIndex = 33;
             label23.Text = "Місто:";
             // 
+            // FotoUnivEditpictureBox
+            // 
+            FotoUnivEditpictureBox.BackColor = SystemColors.ActiveBorder;
+            FotoUnivEditpictureBox.BackgroundImageLayout = ImageLayout.None;
+            FotoUnivEditpictureBox.Location = new Point(186, 790);
+            FotoUnivEditpictureBox.Name = "FotoUnivEditpictureBox";
+            FotoUnivEditpictureBox.Size = new Size(155, 139);
+            FotoUnivEditpictureBox.TabIndex = 75;
+            FotoUnivEditpictureBox.TabStop = false;
+            FotoUnivEditpictureBox.Click += FotoUnivEditpictureBox_Click;
+            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -458,6 +812,24 @@
             label8.Size = new Size(86, 20);
             label8.TabIndex = 11;
             label8.Text = "Назва ВНЗ:";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new Point(32, 909);
+            label31.Name = "label31";
+            label31.Size = new Size(79, 20);
+            label31.TabIndex = 74;
+            label31.Text = "Фото ВНЗ:";
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Location = new Point(32, 424);
+            label37.Name = "label37";
+            label37.Size = new Size(133, 20);
+            label37.TabIndex = 68;
+            label37.Text = "Повна назва ВНЗ:";
             // 
             // label9
             // 
@@ -468,6 +840,15 @@
             label9.TabIndex = 12;
             label9.Text = "Спеціальність:";
             // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new Point(31, 752);
+            label32.Name = "label32";
+            label32.Size = new Size(140, 20);
+            label32.TabIndex = 73;
+            label32.Text = "Опис університету:";
+            // 
             // label10
             // 
             label10.AutoSize = true;
@@ -476,6 +857,15 @@
             label10.Size = new Size(163, 20);
             label10.TabIndex = 13;
             label10.Text = "Мінімальний конкурс:";
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Location = new Point(32, 477);
+            label36.Name = "label36";
+            label36.Size = new Size(109, 20);
+            label36.TabIndex = 69;
+            label36.Text = "Повна адреса:";
             // 
             // label11
             // 
@@ -486,12 +876,30 @@
             label11.TabIndex = 14;
             label11.Text = "Максимальний конкурс:";
             // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new Point(31, 704);
+            label33.Name = "label33";
+            label33.Size = new Size(258, 20);
+            label33.TabIndex = 72;
+            label33.Text = "Вартість навчання за рік (контракт):";
+            // 
             // MoneyEditAdminBox
             // 
             MoneyEditAdminBox.Location = new Point(296, 366);
             MoneyEditAdminBox.Name = "MoneyEditAdminBox";
-            MoneyEditAdminBox.Size = new Size(136, 27);
+            MoneyEditAdminBox.Size = new Size(295, 27);
             MoneyEditAdminBox.TabIndex = 27;
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Location = new Point(31, 591);
+            label35.Name = "label35";
+            label35.Size = new Size(189, 20);
+            label35.TabIndex = 70;
+            label35.Text = "Дані про конкурсний бал:";
             // 
             // label12
             // 
@@ -501,6 +909,15 @@
             label12.Size = new Size(131, 20);
             label12.TabIndex = 15;
             label12.Text = "Форма навчання:";
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new Point(31, 650);
+            label34.Name = "label34";
+            label34.Size = new Size(171, 20);
+            label34.TabIndex = 71;
+            label34.Text = "Опис форми навчання:";
             // 
             // label13
             // 
@@ -565,25 +982,89 @@
             SpecialtyEditAdminBox.Size = new Size(447, 27);
             SpecialtyEditAdminBox.TabIndex = 19;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(flowLayoutPanel1);
+            panel1.Controls.Add(AdminEditButton);
+            panel1.Controls.Add(AdminPanelButton);
+            panel1.Controls.Add(AdminPanel);
+            panel1.Controls.Add(AdminEditPanel);
+            panel1.Location = new Point(30, 90);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1125, 878);
+            panel1.TabIndex = 48;
+            // 
+            // labelCurrentUserAdmin
+            // 
+            labelCurrentUserAdmin.AutoSize = true;
+            labelCurrentUserAdmin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelCurrentUserAdmin.Location = new Point(10, 10);
+            labelCurrentUserAdmin.Name = "labelCurrentUserAdmin";
+            labelCurrentUserAdmin.Size = new Size(135, 23);
+            labelCurrentUserAdmin.TabIndex = 0;
+            labelCurrentUserAdmin.Text = "Вітаємо, [Ім'я]!";
+            // 
+            // buttonEditProfileAdmin
+            // 
+            buttonEditProfileAdmin.Location = new Point(180, 7);
+            buttonEditProfileAdmin.Name = "buttonEditProfileAdmin";
+            buttonEditProfileAdmin.Size = new Size(150, 30);
+            buttonEditProfileAdmin.TabIndex = 0;
+            buttonEditProfileAdmin.Text = "Редагувати профіль";
+            buttonEditProfileAdmin.UseVisualStyleBackColor = true;
+            // Top Bar Button Styling
+            buttonEditProfileAdmin.BackColor = Color.SteelBlue;
+            buttonEditProfileAdmin.FlatAppearance.BorderSize = 0;
+            buttonEditProfileAdmin.FlatStyle = FlatStyle.Flat;
+            buttonEditProfileAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            buttonEditProfileAdmin.ForeColor = Color.White;
+            // End of Top Bar Button Styling
+            buttonEditProfileAdmin.Click += buttonEditProfileAdmin_Click;
+            //
+            // buttonLogoutAdmin
+            //
+            this.buttonLogoutAdmin.Location = new System.Drawing.Point(340, 7);
+            this.buttonLogoutAdmin.Name = "buttonLogoutAdmin";
+            this.buttonLogoutAdmin.Size = new System.Drawing.Size(100, 30);
+            this.buttonLogoutAdmin.TabIndex = 2;
+            this.buttonLogoutAdmin.Text = "Вихід";
+            this.buttonLogoutAdmin.UseVisualStyleBackColor = true;
+            // Top Bar Button Styling
+            this.buttonLogoutAdmin.BackColor = Color.IndianRed;
+            this.buttonLogoutAdmin.FlatAppearance.BorderSize = 0;
+            this.buttonLogoutAdmin.FlatStyle = FlatStyle.Flat;
+            this.buttonLogoutAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            this.buttonLogoutAdmin.ForeColor = Color.White;
+            // End of Top Bar Button Styling
+            this.buttonLogoutAdmin.Click += new System.EventHandler(this.buttonLogoutAdmin_Click);
+            this.Controls.Add(this.buttonLogoutAdmin);
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1537, 869);
-            Controls.Add(AdminEditPanel);
-            Controls.Add(AdminEditButton);
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(AdminPanelButton);
-            Controls.Add(AdminPanel);
+            ClientSize = new Size(1537, 1055);
+            // Form Background Color
+            this.BackColor = Color.GhostWhite;
+            // End of Form Background Color
+            Controls.Add(buttonLogoutAdmin);
+            Controls.Add(buttonEditProfileAdmin);
+            Controls.Add(labelCurrentUserAdmin);
+            Controls.Add(panel1);
             Name = "Admin";
             Text = "Admin";
+            Load += Admin_Load;
             AdminPanelButton.ResumeLayout(false);
             AdminEditButton.ResumeLayout(false);
             AdminPanel.ResumeLayout(false);
             AdminPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)FotoUnivAdminpictureBox).EndInit();
             AdminEditPanel.ResumeLayout(false);
             AdminEditPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)FotoUnivEditpictureBox).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -638,5 +1119,43 @@
         private Label label24;
         private Label label15;
         private TextBox MoneyAdminBox;
+        private Panel panel1;
+        private Label label25;
+        private Label label18;
+        private Label label17;
+        private Label label16;
+        private Label label27;
+        private Label label26;
+        private Label label29;
+        private PictureBox FotoUnivAdminpictureBox;
+        private Label label28;
+        private Label label30;
+        private PictureBox FotoUnivEditpictureBox;
+        private Label label31;
+        private Label label37;
+        private Label label32;
+        private Label label36;
+        private Label label33;
+        private Label label35;
+        private Label label34;
+        private TextBox FullNameEdittextBox;
+        private TextBox DescriptionEdittextBox;
+        private TextBox FullMoneyEdittextBox;
+        private TextBox FullFormEdittextBox;
+        private TextBox FullMarksEdittextBox;
+        private TextBox FullAddressEdittextBox;
+        private TextBox DescriptionAdmintextBox;
+        private TextBox FullMoneyAdmintextBox;
+        private TextBox FullFormAdmintextBox;
+        private TextBox FullMarksAdmintextBox;
+        private TextBox FullAddressAdmintextBox;
+        private TextBox FullNameAdmintextBox;
+        private TextBox FullSpecialtiesAdmintextBox;
+        private Label label38;
+        private TextBox FullSpecialtiesEdittextBox;
+        private Label label39;
+        private Label labelCurrentUserAdmin;
+        private Button buttonEditProfileAdmin;
+        private Button buttonLogoutAdmin;
     }
 }

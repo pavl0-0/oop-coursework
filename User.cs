@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace CourseWork
 {
@@ -14,6 +15,7 @@ namespace CourseWork
         public string password { get; set; }
         public string role { get; set; }
         public string fullName { get; set; }
+        public List<string> SavedUniversityIds { get; set; } = new List<string>();
     }
 
     class UserMananger
@@ -21,79 +23,149 @@ namespace CourseWork
         private const string FilePath = "user_database.json";
         private const string AdminLogin = "admin";
         private const string AdminPasswordHash = "ZehL4zUy\u002B3hMSBKWdfnv86aCsnFowOp0Syz1juAjN8U=";
+        private List<User> users;
+
+        private List<Universities> universities;
+
+        public UserMananger()
+        {
+            this.users = LoadUsers();
+            this.universities = LoadUniversities();
+        }
 
         public List<User> LoadUsers()
         {
             if (!File.Exists(FilePath))
-            { 
-                return new List<User>(); 
+            {
+                return new List<User>();
             }
 
             string json = File.ReadAllText(FilePath);
             return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
         }
 
-        public void SaveUsers(List<User> users)
+        public void SaveUsers(List<User> usersToSave)
         {
-            string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            string json = JsonSerializer.Serialize(usersToSave, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(FilePath, json);
+        }
+
+        public List<Universities> LoadUniversities()
+        {
+            const string UniversitiesFilePath = "universities_database.json"; 
+            if (!File.Exists(UniversitiesFilePath))
+            {
+                return new List<Universities>();
+            }
+            string json = File.ReadAllText(UniversitiesFilePath);
+            return JsonSerializer.Deserialize<List<Universities>>(json) ?? new List<Universities>();
+        }
+
+        public void SaveUniversities(List<Universities> unisToSave)
+        {
+            const string UniversitiesFilePath = "universities_database.json";
+            string json = JsonSerializer.Serialize(unisToSave, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(UniversitiesFilePath, json);
         }
 
         public bool Register(string username, string password, string fullName)
         {
-            var users = LoadUsers();
             var hashed = HashPassword(password);
 
-            if (username.ToLower() == AdminLogin && hashed != AdminPasswordHash)
+            if (username.Equals(AdminLogin, StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
 
-            if (users.Exists(u => u.user.Equals(username, StringComparison.OrdinalIgnoreCase)))
+            if (this.users.Exists(u => u.user.Equals(username, StringComparison.OrdinalIgnoreCase)))
             {
                 return false;
             }
 
-            string role = (username == AdminLogin && hashed == AdminPasswordHash) ? "admin" : "user";
-
-            users.Add(new User
+            this.users.Add(new User
             {
                 user = username,
                 password = hashed,
-                role = role,
+                role = "user",
                 fullName = fullName
             });
 
-            SaveUsers(users);
+            SaveUsers(this.users);
             return true;
         }
-
-
 
         public string Login(string username, string password)
         {
             var hashed = HashPassword(password);
-            const string adminLogin = "admin";
-            const string adminPasswordHash = "ZehL4zUy\u002B3hMSBKWdfnv86aCsnFowOp0Syz1juAjN8U=";
 
-            if (username == adminLogin && hashed == adminPasswordHash)
-            { 
-                return "admin"; 
+            if (username.Equals(AdminLogin, StringComparison.OrdinalIgnoreCase) && hashed == AdminPasswordHash)
+            {
+                return "admin";
             }
 
-            var users = LoadUsers();
-            var user = users.FirstOrDefault(u => u.user == username && u.password == hashed);
+            var user = this.users.FirstOrDefault(u => u.user == username && u.password == hashed);
 
             return user?.role;
         }
 
+        public void AddSavedUniversity(string username, string universityId)
+        {
+            var user = this.users.FirstOrDefault(u => u.user == username);
+            if (user != null)
+            {
+                if (!user.SavedUniversityIds.Contains(universityId))
+                {
+                    user.SavedUniversityIds.Add(universityId);
+                    SaveUsers(this.users);
+                }
+            }
+            else
+            {
+                throw new Exception("Користувача не знайдено.");
+            }
+        }
 
-        private string HashPassword(string password)
+        public List<Universities> GetSavedUniversities(string username)
+        {
+            var user = this.users.FirstOrDefault(u => u.user == username);
+            if (user == null)
+            {
+                return new List<Universities>();
+            }
+
+            var savedIds = user.SavedUniversityIds;
+
+            var savedUnis = this.universities.Where(u => savedIds.Contains(u.Id)).ToList();
+
+            return savedUnis;
+        }
+
+        public void RemoveSavedUniversity(string username, string universityId)
+        {
+            var user = users.FirstOrDefault(u => u.user.Equals(username, StringComparison.OrdinalIgnoreCase));
+            if (user == null)
+            {
+                return;
+            }
+
+            if (user.SavedUniversityIds.Contains(universityId))
+            {
+                user.SavedUniversityIds.Remove(universityId);
+                SaveUsers(users);
+            }
+        }
+
+        public string HashPassword(string password)
         {
             using var sha = SHA256.Create();
             var bytes = Encoding.UTF8.GetBytes(password);
-            var hash = sha.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
+            var hashBytes = sha.ComputeHash(bytes);
+            return Convert.ToBase64String(hashBytes);
+        }
+
+        public Universities GetUniversityById(string id)
+        {
+            return universities.FirstOrDefault(u => u.Id == id);
         }
     }
 }

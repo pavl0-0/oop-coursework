@@ -1,59 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CourseWork
 {
     public partial class LogInForm : Form
     {
+        private UserMananger userManager;
+
         public LogInForm()
         {
             InitializeComponent();
+            userManager = new UserMananger();
+            this.FormClosing += LogInForm_FormClosing;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var manager = new UserMananger();
-            string login = NameLogText.Text;
+            string username = NameLogText.Text;
             string password = PasswordLogText.Text;
 
-            string role = manager.Login(login, password);
+            string role = userManager.Login(username, password);
 
-            if (role != null)
+            if (!string.IsNullOrEmpty(role))
             {
-                MessageBox.Show("Вхід виконано!");
-                Main main = new Main(role);
+                CurrentUser.Username = username;
+                CurrentUser.Role = role;
+                var user = userManager.LoadUsers().Find(u => u.user == username);
+                CurrentUser.FullName = user?.fullName;
 
-                main.Show();
+
+                Main mainForm = new Main(CurrentUser.Role);
+                mainForm.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Невірний логін або пароль.");
+                MessageBox.Show("Неправильне ім'я користувача або пароль.", "Помилка входу", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void RegLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RegistrationForm registerForm = new RegistrationForm();
-            registerForm.Show();
+            RegistrationForm registrationForm = new RegistrationForm();
+            registrationForm.Show();
             this.Hide();
         }
 
-        private void NameLogText_TextChanged(object sender, EventArgs e)
+        private void LogInForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете вийти з програми?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                Application.Exit();
+            }
         }
     }
 }

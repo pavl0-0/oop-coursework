@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,34 +9,31 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CourseWork
 {
     public partial class Admin : Form
     {
+        private UniversitiesManager _universitiesManager;
+        private Universities universityBeingEdited;
+        private string _photoPathForNewUniversity;
+        private bool isNavigating = false;
+
         public Admin()
         {
             InitializeComponent();
-            AdminEditPanel.Visible = false; 
+            _universitiesManager = new UniversitiesManager();
+            AdminEditPanel.Visible = false;
             AdminEditButton.Visible = false;
 
             LoadUniqueCitiesToComboBox();
+            this.FormClosing += Admin_FormClosing;
         }
 
         private void LoadUniqueCitiesToComboBox()
         {
-            string jsonPath = "universities_database.json";
-            if (!File.Exists(jsonPath))
-                return;
-
-            var universities = JsonConvert.DeserializeObject<List<Universities>>(File.ReadAllText(jsonPath));
-
-            var uniqueCities = universities
-                .Select(u => u.City)
-                .Where(c => !string.IsNullOrWhiteSpace(c))
-                .Distinct()
-                .OrderBy(c => c)
-                .ToList();
+            var uniqueCities = _universitiesManager.GetUniqueCities();
 
             AdminCityComboBox.Items.Clear();
             AdminCityComboBox.Items.AddRange(uniqueCities.ToArray());
@@ -47,9 +43,6 @@ namespace CourseWork
 
         private void SaveAdminButton_Click(object sender, EventArgs e)
         {
-            var manager = new UniversitiesMananger();
-            var universities = manager.LoadUniversities();
-
             if (!decimal.TryParse(MinMarkAdminBox.Text, out decimal minMark) ||
                 !decimal.TryParse(MaxMarkAdminBox.Text, out decimal maxMark) ||
                 minMark < 100 || minMark > 200 || maxMark < 100 || maxMark > 200)
@@ -58,7 +51,7 @@ namespace CourseWork
                 return;
             }
 
-            string city = AdminCityComboBox.Text.Trim(); 
+            string city = AdminCityComboBox.Text.Trim();
             string form = FormComboBox.SelectedItem?.ToString() ?? "";
             if (string.IsNullOrWhiteSpace(form))
             {
@@ -72,7 +65,11 @@ namespace CourseWork
                 return;
             }
 
-            int.TryParse(SpecialtyAdminBox.Text, out int specialty);
+            int specialty;
+            if (!int.TryParse(SpecialtyAdminBox.Text, out specialty))
+            {
+                specialty = 0;
+            }
 
             var newUniversity = new Universities
             {
@@ -83,14 +80,22 @@ namespace CourseWork
                 LearnForm = form,
                 MinMark = minMark,
                 MaxMark = maxMark,
-                Money = money
+                Money = money,
+                UniversityNameFull = FullNameAdmintextBox.Text,
+                AddressFull = FullAddressAdmintextBox.Text,
+                SpecialtiesFull = FullSpecialtiesAdmintextBox.Text,
+                MarksFull = FullMarksAdmintextBox.Text,
+                LearnFormFull = FullFormAdmintextBox.Text,
+                MoneyFull = FullMoneyAdmintextBox.Text,
+                DescriptionFull = DescriptionAdmintextBox.Text,
+                PhotoPath = _photoPathForNewUniversity
             };
 
-            universities.Add(newUniversity);
-            manager.SaveUniversities(universities);
+            _universitiesManager.AddUniversity(newUniversity);
 
             MessageBox.Show("Університет успішно збережено!");
-
+            ClearButtonAdmin_Click(sender, e);
+            LoadUniqueCitiesToComboBox();
         }
 
         private void ClearButtonAdmin_Click(object sender, EventArgs e)
@@ -106,53 +111,41 @@ namespace CourseWork
             MinMoneyAdminBox.Text = "";
             MaxMoneyAdminBox.Text = "";
             MoneyAdminBox.Text = "";
+            FullNameAdmintextBox.Text = "";
+            FullAddressAdmintextBox.Text = "";
+            FullSpecialtiesAdmintextBox.Text = "";
+            FullMarksAdmintextBox.Text = "";
+            FullFormAdmintextBox.Text = "";
+            FullMoneyAdmintextBox.Text = "";
+            DescriptionAdmintextBox.Text = "";
+            FotoUnivAdminpictureBox.Image = null;
+            _photoPathForNewUniversity = null;
         }
 
         private void ExitAdminButton_Click(object sender, EventArgs e)
         {
             Main main = new Main("admin");
             main.Show();
-            this.Hide();
+            isNavigating = true;
+            this.Close();
         }
 
         private void SearchButtonAdmin_Click(object sender, EventArgs e)
         {
-            string jsonContent = File.ReadAllText("universities_database.json");
-            var universities = JsonConvert.DeserializeObject<List<Universities>>(jsonContent);
-
-            string searchName = nameAdminBox.Text.Trim().ToLower();
-            string searchAddress = AddressAdminBox.Text.Trim().ToLower();
+            string searchName = nameAdminBox.Text.Trim();
+            string searchAddress = AddressAdminBox.Text.Trim();
             string searchSpecialty = SpecialtyAdminBox.Text.Trim();
             string searchMinMark = MinMarkAdminBox.Text.Trim();
             string searchMaxMark = MaxMarkAdminBox.Text.Trim();
             string searchMinMoney = MinMoneyAdminBox.Text.Trim();
             string searchMaxMoney = MaxMoneyAdminBox.Text.Trim();
-            string searchForm = FormComboBox.Text.Trim().ToLower();
-            string searchCity = AdminCityComboBox.Text.Trim().ToLower();
+            string searchForm = FormComboBox.Text.Trim();
+            string searchCity = AdminCityComboBox.Text.Trim();
 
-            int specialtyValue;
-            decimal minMarkValue = 0;
-            decimal maxMarkValue = 0;
-            decimal minMoneyValue = 0;
-            decimal maxMoneyValue = 0;
-
-            bool isSpecialtyValid = int.TryParse(searchSpecialty, out specialtyValue);
-            bool isMinMarkValid = decimal.TryParse(searchMinMark, out minMarkValue);
-            bool isMaxMarkValid = decimal.TryParse(searchMaxMark, out maxMarkValue);
-            bool isMinMoneyValid = decimal.TryParse(searchMinMoney, out minMoneyValue);
-            bool isMaxMoneyValid = decimal.TryParse(searchMaxMoney, out maxMoneyValue);
-
-            var filteredUniversities = universities.Where(u =>
-                (string.IsNullOrEmpty(searchName) || u.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(searchSpecialty) || (isSpecialtyValid && u.Specialties == specialtyValue)) &&
-                (string.IsNullOrEmpty(searchAddress) || u.Address.Equals(searchAddress, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(searchCity) || u.City.Equals(searchCity, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(searchMinMark) || (isMinMarkValid && u.MinMark >= minMarkValue)) &&
-                (string.IsNullOrEmpty(searchMaxMark) || (isMaxMarkValid && u.MaxMark <= maxMarkValue)) &&
-                (string.IsNullOrEmpty(searchMinMoney) || u.Money >= minMoneyValue) &&
-                (string.IsNullOrEmpty(searchMaxMoney) || u.Money <= maxMoneyValue) &&
-                (string.IsNullOrEmpty(searchForm) || u.LearnForm.Equals(searchForm, StringComparison.OrdinalIgnoreCase))
-            ).ToList();
+            var filteredUniversities = _universitiesManager.SearchUniversities(
+                searchName, searchAddress, searchSpecialty, searchMinMark, searchMaxMark,
+                searchMinMoney, searchMaxMoney, searchForm, searchCity
+            );
 
             MessageBox.Show($"Знайдено університетів: {filteredUniversities.Count}");
 
@@ -210,21 +203,6 @@ namespace CourseWork
             return panel;
         }
 
-        private void DeleteUniversity(Universities university)
-        {
-            string jsonPath = "universities_database.json";
-            var universities = JsonConvert.DeserializeObject<List<Universities>>(File.ReadAllText(jsonPath));
-
-            universities = universities
-                .Where(u => !(u.Name == university.Name && u.Address == university.Address))
-                .ToList();
-
-            File.WriteAllText(jsonPath, JsonConvert.SerializeObject(universities, Formatting.Indented));
-            MessageBox.Show("Університет успішно видалено.");
-        }
-
-        private Universities universityBeingEdited;
-
         private void UpdatePanelWithUniversityData(Panel panel, Universities university)
         {
             if (panel.Controls["NameUniv"] is Label name)
@@ -273,6 +251,21 @@ namespace CourseWork
                             EditCityComboBox.Text = university.City;
                             MoneyEditAdminBox.Text = university.Money.ToString();
                             FormEditComboBox.Text = university.LearnForm;
+                            FullNameEdittextBox.Text = university.UniversityNameFull;
+                            FullAddressEdittextBox.Text = university.AddressFull;
+                            FullSpecialtiesEdittextBox.Text = university.SpecialtiesFull;
+                            FullMarksEdittextBox.Text = university.MarksFull;
+                            FullFormEdittextBox.Text = university.LearnFormFull;
+                            FullMoneyEdittextBox.Text = university.MoneyFull;
+                            DescriptionEdittextBox.Text = university.DescriptionFull;
+                            if (!string.IsNullOrEmpty(university.PhotoPath) && File.Exists(university.PhotoPath))
+                            {
+                                FotoUnivEditpictureBox.Image = Image.FromFile(university.PhotoPath);
+                            }
+                            else
+                            {
+                                FotoUnivEditpictureBox.Image = null;
+                            }
                         };
                     }
                     else if (button.Text == "Видалити")
@@ -282,7 +275,7 @@ namespace CourseWork
                             var result = MessageBox.Show("Ви впевнені, що хочете видалити університет?", "Підтвердження", MessageBoxButtons.YesNo);
                             if (result == DialogResult.Yes)
                             {
-                                DeleteUniversity(university);
+                                _universitiesManager.DeleteUniversity(university.Name, university.Address);
                                 SearchButtonAdmin_Click(null, null);
                             }
                         };
@@ -293,68 +286,62 @@ namespace CourseWork
 
         private void SaveEdit_Click(object sender, EventArgs e)
         {
-            string jsonPath = "universities_database.json";
-            var universities = JsonConvert.DeserializeObject<List<Universities>>(File.ReadAllText(jsonPath));
-
-            var target = universities.FirstOrDefault(u =>
-                u.Name == universityBeingEdited.Name &&
-                u.Address == universityBeingEdited.Address);
-
-            if (target != null)
+            if (universityBeingEdited == null)
             {
-                if (!string.IsNullOrEmpty(nameEditAdminBox.Text) && nameEditAdminBox.Text != universityBeingEdited.Name)
-                    target.Name = nameEditAdminBox.Text;
-
-                if (!string.IsNullOrEmpty(EditCityComboBox.Text) && EditCityComboBox.Text != universityBeingEdited.City)
-                    target.City = EditCityComboBox.Text;
-
-                if (!string.IsNullOrEmpty(AddressEditAdminBox.Text) && AddressEditAdminBox.Text != universityBeingEdited.Address)
-                    target.Address = AddressEditAdminBox.Text;
-
-                if (int.TryParse(SpecialtyEditAdminBox.Text, out int specialty) && specialty != universityBeingEdited.Specialties)
-                    target.Specialties = specialty;
-
-                if (decimal.TryParse(MinMarkEditAdminBox.Text, out decimal minMark) && minMark != universityBeingEdited.MinMark)
-                    target.MinMark = minMark;
-
-                if (decimal.TryParse(MaxMarkEditAdminBox.Text, out decimal maxMark) && maxMark != universityBeingEdited.MaxMark)
-                    target.MaxMark = maxMark;
-
-                if (decimal.TryParse(MoneyEditAdminBox.Text, out decimal money) && money != universityBeingEdited.Money)
-                    target.Money = money;
-
-                if (!string.IsNullOrEmpty(FormEditComboBox.Text) && FormEditComboBox.Text != universityBeingEdited.LearnForm)
-                    target.LearnForm = FormEditComboBox.Text;
-
-                File.WriteAllText(jsonPath, JsonConvert.SerializeObject(universities, Formatting.Indented));
-                MessageBox.Show("Дані успішно оновлено.");
-
-                nameEditAdminBox.Text = "";
-                EditCityComboBox.SelectedIndex = -1;
-                EditCityComboBox.Text = "";
-                AddressEditAdminBox.Text = "";
-                SpecialtyEditAdminBox.Text = "";
-                FormEditComboBox.SelectedIndex = -1;
-                MinMarkEditAdminBox.Text = "";
-                MaxMarkEditAdminBox.Text = "";
-                MoneyEditAdminBox.Text = "";
-
-                nameAdminBox.Text = "";
-                AdminCityComboBox.SelectedIndex = -1;
-                AdminCityComboBox.Text = "";
-                AddressAdminBox.Text = "";
-                SpecialtyAdminBox.Text = "";
-                FormComboBox.SelectedIndex = -1;
-                MinMarkAdminBox.Text = "";
-                MaxMarkAdminBox.Text = "";
-                MinMoneyAdminBox.Text = "";
-                MaxMoneyAdminBox.Text = "";
-                MoneyAdminBox.Text = "";
+                MessageBox.Show("Не вибрано університет для редагування.");
+                return;
             }
 
+            if (!decimal.TryParse(MinMarkEditAdminBox.Text, out decimal minMark) ||
+                !decimal.TryParse(MaxMarkEditAdminBox.Text, out decimal maxMark) ||
+                minMark < 100 || minMark > 200 || maxMark < 100 || maxMark > 200)
+            {
+                MessageBox.Show("Введіть мінімальне і максимальне значення в межах від 100 до 200 балів");
+                return;
+            }
+
+            if (!decimal.TryParse(MoneyEditAdminBox.Text, out decimal money) || money < 0)
+            {
+                MessageBox.Show("Введіть коректну суму грошей за навчання");
+                return;
+            }
+            int specialty;
+            if (!int.TryParse(SpecialtyEditAdminBox.Text, out specialty))
+            {
+                specialty = 0;
+            }
+
+            var updatedUniversityData = new Universities
+            {
+                Id = universityBeingEdited.Id,
+                Name = nameEditAdminBox.Text,
+                City = EditCityComboBox.Text,
+                Address = AddressEditAdminBox.Text,
+                Specialties = specialty,
+                LearnForm = FormEditComboBox.Text,
+                MinMark = minMark,
+                MaxMark = maxMark,
+                Money = money,
+                UniversityNameFull = FullNameEdittextBox.Text,
+                AddressFull = FullAddressEdittextBox.Text,
+                SpecialtiesFull = FullSpecialtiesEdittextBox.Text,
+                MarksFull = FullMarksEdittextBox.Text,
+                LearnFormFull = FullFormEdittextBox.Text,
+                MoneyFull = FullMoneyEdittextBox.Text,
+                DescriptionFull = DescriptionEdittextBox.Text,
+                PhotoPath = universityBeingEdited.PhotoPath
+            };
+
+            _universitiesManager.UpdateUniversity(updatedUniversityData);
+            MessageBox.Show("Дані успішно оновлено.");
+
+            CleanEdit_Click(sender, e);
+            AdminEditButton.Visible = false;
             AdminEditPanel.Visible = false;
             AdminPanel.Visible = true;
+            AdminPanelButton.Visible = true;
             SearchButtonAdmin_Click(null, null);
+            LoadUniqueCitiesToComboBox();
         }
 
         private void CleanEdit_Click(object sender, EventArgs e)
@@ -368,6 +355,14 @@ namespace CourseWork
             MinMarkEditAdminBox.Text = "";
             MaxMarkEditAdminBox.Text = "";
             MoneyEditAdminBox.Text = "";
+            FullNameEdittextBox.Text = "";
+            FullAddressEdittextBox.Text = "";
+            FullSpecialtiesEdittextBox.Text = "";
+            FullMarksEdittextBox.Text = "";
+            FullFormEdittextBox.Text = "";
+            FullMoneyEdittextBox.Text = "";
+            DescriptionEdittextBox.Text = "";
+            FotoUnivEditpictureBox.Image = null;
         }
 
         private void ExitEdit_Click(object sender, EventArgs e)
@@ -376,6 +371,108 @@ namespace CourseWork
             AdminEditPanel.Visible = false;
             AdminPanel.Visible = true;
             AdminPanelButton.Visible = true;
+        }
+
+        private void FotoUnivAdminpictureBox_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Оберіть зображення університету";
+                openFileDialog.Filter = "Зображення (*.jpg; *.jpeg; *.png; *.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        FotoUnivAdminpictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        FotoUnivAdminpictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                        _photoPathForNewUniversity = openFileDialog.FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Не вдалося завантажити зображення: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void FotoUnivEditpictureBox_Click(object sender, EventArgs e)
+        {
+            if (universityBeingEdited == null)
+            {
+                MessageBox.Show("Університет не вибрано або не ініціалізовано.");
+                return;
+            }
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Оберіть зображення університету";
+                openFileDialog.Filter = "Зображення (*.jpg; *.jpeg; *.png; *.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        FotoUnivEditpictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        FotoUnivEditpictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                        universityBeingEdited.PhotoPath = openFileDialog.FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Не вдалося завантажити зображення: " + ex.Message);
+                    }
+                }
+            }
+        }
+        private void Admin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isNavigating || Program.IsExitingProgram)
+            {
+                e.Cancel = false;
+                return;
+            }
+
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете вийти з програми?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Program.ExitApplication();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                Program.ExitApplication();
+            }
+        }
+
+        private void buttonEditProfileAdmin_Click(object sender, EventArgs e)
+        {
+            EditProfileForm editForm = new EditProfileForm();
+            editForm.ShowDialog();
+            labelCurrentUserAdmin.Text = $"Вітаємо, {CurrentUser.FullName}!";
+        }
+
+        private void Admin_Load(object sender, EventArgs e)
+        {
+            labelCurrentUserAdmin.Text = $"Вітаємо, {CurrentUser.FullName}!";
+        }
+
+        private void buttonLogoutAdmin_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Ви впевнені, що хочете вийти з облікового запису?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                CurrentUser.Clear();
+                Applicants_Handbook applicantsHandbook = new Applicants_Handbook();
+                applicantsHandbook.Show();
+                isNavigating = true;
+                this.Close();
+            }
         }
     }
 }

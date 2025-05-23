@@ -7,40 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
+using System.IO;
 
 namespace CourseWork
 {
     public partial class Main : Form
     {
         private string userRole;
-
-        //public Main()
-        //{
-        //    InitializeComponent();
-        //}
+        private UniversitiesManager _universitiesManager;
+        private UserMananger _userMananger;
+        private bool isNavigating = false;
 
         public Main(string role)
         {
             InitializeComponent();
             userRole = role;
+            _universitiesManager = new UniversitiesManager();
             LoadUniqueCitiesToComboBox();
+            _userMananger = new UserMananger();
+            this.FormClosing += Main_FormClosing;
         }
 
         private void LoadUniqueCitiesToComboBox()
         {
-            string jsonPath = "universities_database.json";
-            if (!File.Exists(jsonPath))
-                return;
-
-            var universities = JsonConvert.DeserializeObject<List<Universities>>(File.ReadAllText(jsonPath));
-
-            var uniqueCities = universities
-                .Select(u => u.City)
-                .Where(c => !string.IsNullOrWhiteSpace(c))
-                .Distinct()
-                .OrderBy(c => c)
-                .ToList();
+            var uniqueCities = _universitiesManager.GetUniqueCities();
 
             CityMainComboBox.Items.Clear();
             CityMainComboBox.Items.AddRange(uniqueCities.ToArray());
@@ -56,71 +46,37 @@ namespace CourseWork
             {
                 AdminFunctionsPanel.Visible = false;
             }
+
+            labelCurrentUser.Text = $"Вітаємо, {CurrentUser.FullName}!";
         }
 
         private void AddAdminButton_Click(object sender, EventArgs e)
         {
             Admin adminAdd = new Admin();
             adminAdd.Show();
-            this.Hide();
+            isNavigating = true;
+            this.Close();
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            string jsonContent = File.ReadAllText("universities_database.json");
-            var universities = JsonConvert.DeserializeObject<List<Universities>>(jsonContent);
-
-            string searchName = NameMainBox.Text.Trim().ToLower();
-            string searchAddress = AddressMainBox.Text.Trim().ToLower();
+            string searchName = NameMainBox.Text.Trim();
+            string searchAddress = AddressMainBox.Text.Trim();
             string searchSpecialty = SpecialtyMainBox.Text.Trim();
             string searchMinMark = MinMarkMainBox.Text.Trim();
-            string searchMaxMark = MaxMarkMainBox.Text.Trim(); 
+            string searchMaxMark = MaxMarkMainBox.Text.Trim();
             string searchMinMoney = MinMoneyMainBox.Text.Trim();
             string searchMaxMoney = MaxMoneyMainBox.Text.Trim();
-            string searchForm = FormComboBox.Text.Trim().ToLower();
-            string searchCity = CityMainComboBox.Text.Trim().ToLower();
+            string searchForm = FormComboBox.Text.Trim();
+            string searchCity = CityMainComboBox.Text.Trim();
 
-            decimal specialtyValue;
-            decimal minMarkValue = 0;
-            decimal maxMarkValue = 0; 
-            decimal minMoneyValue = 0;
-            decimal maxMoneyValue = 0;
+            var filteredUniversities = _universitiesManager.SearchUniversities(
+                searchName, searchAddress, searchSpecialty, searchMinMark, searchMaxMark,
+                searchMinMoney, searchMaxMoney, searchForm, searchCity
+            );
 
-            bool isSpecialtyValid = decimal.TryParse(searchSpecialty, out specialtyValue);
-            bool isMinMarkValid = decimal.TryParse(searchMinMark, out minMarkValue);
-            bool isMaxMarkValid = decimal.TryParse(searchMaxMark, out maxMarkValue);
-            bool isMinMoneyValid = decimal.TryParse(searchMinMoney, out minMoneyValue);
-            bool isMaxMoneyValid = decimal.TryParse(searchMaxMoney, out maxMoneyValue);
-
-            var filteredUniversities = universities.Where(u =>
-                (string.IsNullOrEmpty(searchName) || u.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(searchSpecialty) || (isSpecialtyValid && u.Specialties == specialtyValue)) &&
-                (string.IsNullOrEmpty(searchAddress) || u.Address.Equals(searchAddress, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(searchMinMark) || (isMinMarkValid && u.MinMark >= minMarkValue)) &&
-                (string.IsNullOrEmpty(searchMaxMark) || (isMaxMarkValid && u.MaxMark <= maxMarkValue)) &&
-                (string.IsNullOrEmpty(searchMinMoney) || u.Money >= minMoneyValue) &&
-                (string.IsNullOrEmpty(searchMaxMoney) || u.Money <= maxMoneyValue) &&
-                (string.IsNullOrEmpty(searchForm) || u.LearnForm.Equals(searchForm, StringComparison.OrdinalIgnoreCase))
-            ).ToList();
-
-            flowLayoutPanel1.Controls.Clear();
-
-            if (filteredUniversities.Count > 0)
-            {
-                foreach (var university in filteredUniversities)
-                {
-                    Panel panel = CreateNewPanel();
-                    UpdatePanelWithUniversityData(panel, university);
-                    flowLayoutPanel1.Controls.Add(panel);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Нічого не знайдено.");
-            }
+            DisplayUniversities(filteredUniversities, true);
         }
-
-
 
         private Panel CreateNewPanel()
         {
@@ -136,25 +92,57 @@ namespace CourseWork
             var labelForm = new Label { Name = "LearnForm", AutoSize = true, Location = new Point(10, 190) };
             var labelTuitionFee = new Label { Name = "Money", AutoSize = true, Location = new Point(10, 220) };
 
-            panel.Controls.Add(labelName);
-            panel.Controls.Add(labelCity);
-            panel.Controls.Add(labelAddress);
-            panel.Controls.Add(labelSpecialty);
-            panel.Controls.Add(labelMinMark);
-            panel.Controls.Add(labelMaxMark);
-            panel.Controls.Add(labelForm);
-            panel.Controls.Add(labelTuitionFee);
+            var detailsButton = new Button
+            {
+                Text = "Детальніше",
+                Location = new Point(500, 150),
+                Size = new Size(100, 30)
+            };
+
+            var saveButton = new Button
+            {
+                Text = "Зберегти",
+                Location = new Point(500, 190),
+                Size = new Size(100, 30),
+                Name = "SaveButton"
+            };
+
+
+            panel.Controls.AddRange(new Control[]
+            {
+                labelName, labelCity, labelAddress, labelSpecialty, labelMinMark,
+                labelMaxMark, labelForm, labelTuitionFee, detailsButton, saveButton
+            });
 
             return panel;
         }
 
-        private void UpdatePanelWithUniversityData(Panel panel, Universities university)
+        private void DisplayUniversities(List<Universities> universities, bool showSaveButton)
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            if (universities.Count > 0)
+            {
+                foreach (var university in universities)
+                {
+                    Panel panel = CreateNewPanel();
+                    UpdatePanelWithUniversityData(panel, university, showSaveButton);
+                    flowLayoutPanel1.Controls.Add(panel);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нічого не знайдено.");
+            }
+        }
+
+        private void UpdatePanelWithUniversityData(Panel panel, Universities university, bool showSaveButton)
         {
             if (panel.Controls["NameUniv"] is Label name)
                 name.Text = $"Назва ВНЗ: {university.Name}";
 
             if (panel.Controls["City"] is Label city)
-                city.Text = $"Форма навчання: {university.City}";
+                city.Text = $"Місто: {university.City}";
 
             if (panel.Controls["Address"] is Label address)
                 address.Text = $"Адреса: {university.Address}";
@@ -173,18 +161,122 @@ namespace CourseWork
 
             if (panel.Controls["Money"] is Label money)
                 money.Text = $"Вартість навчання: {university.Money} грн.";
+
+            Button detailsButton = panel.Controls.OfType<Button>().FirstOrDefault(b => b.Text == "Детальніше");
+            Button saveButton = panel.Controls.OfType<Button>().FirstOrDefault(b => b.Name == "SaveButton"); 
+
+            if (detailsButton != null)
+            {
+                detailsButton.Click += (s, e) =>
+                {
+                    Info infoForm = new Info(university);
+                    infoForm.ShowDialog();
+                };
+            }
+
+            if (saveButton != null)
+            {
+                saveButton.Tag = university;
+                saveButton.Click += SaveButton_Click;
+                saveButton.Visible = showSaveButton;
+            }
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void ChangeAdminButton_Click(object sender, EventArgs e)
         {
             Admin adminAdd = new Admin();
             adminAdd.Show();
-            this.Hide();
+            isNavigating = true;
+            this.Close();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isNavigating || Program.IsExitingProgram)
+            {
+                e.Cancel = false;
+                return;
+            }
+
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете вийти з програми?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Program.ExitApplication();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                Program.ExitApplication();
+            }
+        }
+
+        private void buttonEditProfile_Click(object sender, EventArgs e)
+        {
+            EditProfileForm editForm = new EditProfileForm();
+            editForm.ShowDialog();
+            labelCurrentUser.Text = $"Вітаємо, {CurrentUser.FullName}!";
+        }
+
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Ви впевнені, що хочете вийти з облікового запису?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                CurrentUser.Clear();
+                Applicants_Handbook applicantsHandbook = new Applicants_Handbook();
+                applicantsHandbook.Show();
+                isNavigating = true;
+                this.Close();
+            }
+        }
+
+        private void ViewSavedButton_Click(object sender, EventArgs e)
+        {
+            string currentUsername = CurrentUser.Username;
+            if (string.IsNullOrEmpty(currentUsername))
+            {
+                MessageBox.Show("Будь ласка, увійдіть в систему, щоб переглянути збережені університети.");
+                return;
+            }
+
+            SavedUniversitiesForm savedForm = new SavedUniversitiesForm(currentUsername);
+            savedForm.ShowDialog();
+            flowLayoutPanel1.Controls.Clear();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton?.Tag is Universities universityToSave)
+            {
+                string currentUsername = CurrentUser.Username;
+
+                if (string.IsNullOrEmpty(currentUsername))
+                {
+                    MessageBox.Show("Будь ласка, увійдіть в систему, щоб зберегти.");
+                    return;
+                }
+
+                try
+                {
+                    _userMananger.AddSavedUniversity(currentUsername, universityToSave.Id);
+                    MessageBox.Show($"Університет '{universityToSave.Name}' успішно збережено!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Не вдалося зберегти університет: {ex.Message}");
+                }
+            }
         }
     }
 }
