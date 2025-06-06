@@ -5,11 +5,12 @@ namespace CourseWork
 {
     public partial class Applicants_Handbook : Form
     {
-
-        public Applicants_Handbook()
+        private UniversitiesManager _universitiesManager;
+        public Applicants_Handbook(UniversitiesManager universitiesManager)
         {
             InitializeComponent();
             this.FormClosing += Applicants_Handbook_FormClosing;
+            _universitiesManager = universitiesManager;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -18,14 +19,14 @@ namespace CourseWork
 
         private void RegistrationMainButton_Click(object sender, EventArgs e)
         {
-            RegistrationForm registrationForm = new RegistrationForm();
+            RegistrationForm registrationForm = new RegistrationForm(_universitiesManager);
             registrationForm.Show();
             this.Hide();
         }
 
         private void LogInMainButton_Click(object sender, EventArgs e)
         {
-            LogInForm loginForm = new LogInForm();
+            LogInForm loginForm = new LogInForm(_universitiesManager);
             loginForm.Show();
             this.Hide();
         }

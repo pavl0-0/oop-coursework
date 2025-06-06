@@ -33,7 +33,7 @@
             SearchButton = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             MainPanel = new Panel();
-            CityMainComboBox = new ComboBox();
+            CityMainTextBox = new TextBox();
             label24 = new Label();
             label7 = new Label();
             label1 = new Label();
@@ -109,7 +109,7 @@
             // 
             // MainPanel
             // 
-            MainPanel.Controls.Add(CityMainComboBox);
+            MainPanel.Controls.Add(CityMainTextBox);
             MainPanel.Controls.Add(label24);
             MainPanel.Controls.Add(label7);
             MainPanel.Controls.Add(label1);
@@ -132,13 +132,12 @@
             MainPanel.Size = new Size(311, 358);
             MainPanel.TabIndex = 3;
             // 
-            // CityMainComboBox
+            // CityMainTextBox
             // 
-            CityMainComboBox.FormattingEnabled = true;
-            CityMainComboBox.Location = new Point(183, 314);
-            CityMainComboBox.Name = "CityMainComboBox";
-            CityMainComboBox.Size = new Size(125, 28);
-            CityMainComboBox.TabIndex = 24;
+            CityMainTextBox.Location = new Point(183, 314);
+            CityMainTextBox.Name = "CityMainTextBox";
+            CityMainTextBox.Size = new Size(125, 27);
+            CityMainTextBox.TabIndex = 25;
             // 
             // label24
             // 
@@ -381,12 +380,12 @@
         private TextBox MaxMarkMainBox;
         private TextBox NameMainBox;
         private TextBox SpecialtyMainBox;
-        private ComboBox CityMainComboBox;
         private Label label24;
         private Label label7;
         private Label labelCurrentUser;
         private Button buttonEditProfile;
         private Button buttonLogout;
         private Button buttonSaved;
+        private TextBox CityMainTextBox;
     }
 }

@@ -70,7 +70,6 @@
             label16 = new Label();
             MoneyAdminBox = new TextBox();
             label15 = new Label();
-            AdminCityComboBox = new ComboBox();
             label24 = new Label();
             label7 = new Label();
             label19 = new Label();
@@ -89,7 +88,6 @@
             FullAddressEdittextBox = new TextBox();
             FullNameEdittextBox = new TextBox();
             label30 = new Label();
-            EditCityComboBox = new ComboBox();
             label23 = new Label();
             FotoUnivEditpictureBox = new PictureBox();
             label8 = new Label();
@@ -117,6 +115,8 @@
             labelCurrentUserAdmin = new Label();
             buttonEditProfileAdmin = new Button();
             buttonLogoutAdmin = new Button();
+            AdminCityTextBox = new TextBox();
+            EditCityTextBox = new TextBox();
             AdminPanelButton.SuspendLayout();
             AdminEditButton.SuspendLayout();
             AdminPanel.SuspendLayout();
@@ -128,7 +128,7 @@
             // 
             // nameAdminBox
             // 
-            nameAdminBox.Location = new Point(121, 15);
+            nameAdminBox.Location = new Point(124, 15);
             nameAdminBox.Name = "nameAdminBox";
             nameAdminBox.Size = new Size(470, 27);
             nameAdminBox.TabIndex = 20;
@@ -210,53 +210,47 @@
             // 
             // SaveAdminButton
             // 
-            SaveAdminButton.Location = new Point(299, 13);
-            SaveAdminButton.Name = "SaveAdminButton";
-            SaveAdminButton.Size = new Size(213, 61);
-            SaveAdminButton.TabIndex = 21;
-            SaveAdminButton.Text = "Зберегти дані";
-            SaveAdminButton.UseVisualStyleBackColor = true;
-            // Admin Panel Button Styling
             SaveAdminButton.BackColor = Color.SteelBlue;
             SaveAdminButton.FlatAppearance.BorderSize = 0;
             SaveAdminButton.FlatStyle = FlatStyle.Flat;
             SaveAdminButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             SaveAdminButton.ForeColor = Color.White;
-            // End of Admin Panel Button Styling
+            SaveAdminButton.Location = new Point(299, 13);
+            SaveAdminButton.Name = "SaveAdminButton";
+            SaveAdminButton.Size = new Size(213, 61);
+            SaveAdminButton.TabIndex = 21;
+            SaveAdminButton.Text = "Зберегти дані";
+            SaveAdminButton.UseVisualStyleBackColor = false;
             SaveAdminButton.Click += SaveAdminButton_Click;
             // 
             // ClearButtonAdmin
             // 
-            ClearButtonAdmin.Location = new Point(569, 13);
-            ClearButtonAdmin.Name = "ClearButtonAdmin";
-            ClearButtonAdmin.Size = new Size(213, 61);
-            ClearButtonAdmin.TabIndex = 22;
-            ClearButtonAdmin.Text = "Очистити поля";
-            ClearButtonAdmin.UseVisualStyleBackColor = true;
-            // Admin Panel Button Styling
             ClearButtonAdmin.BackColor = Color.SteelBlue;
             ClearButtonAdmin.FlatAppearance.BorderSize = 0;
             ClearButtonAdmin.FlatStyle = FlatStyle.Flat;
             ClearButtonAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             ClearButtonAdmin.ForeColor = Color.White;
-            // End of Admin Panel Button Styling
+            ClearButtonAdmin.Location = new Point(569, 13);
+            ClearButtonAdmin.Name = "ClearButtonAdmin";
+            ClearButtonAdmin.Size = new Size(213, 61);
+            ClearButtonAdmin.TabIndex = 22;
+            ClearButtonAdmin.Text = "Очистити поля";
+            ClearButtonAdmin.UseVisualStyleBackColor = false;
             ClearButtonAdmin.Click += ClearButtonAdmin_Click;
             // 
             // ExitAdminButton
             // 
-            ExitAdminButton.Location = new Point(839, 13);
-            ExitAdminButton.Name = "ExitAdminButton";
-            ExitAdminButton.Size = new Size(213, 61);
-            ExitAdminButton.TabIndex = 23;
-            ExitAdminButton.Text = "Вийти";
-            ExitAdminButton.UseVisualStyleBackColor = true;
-            // Admin Panel Button Styling
             ExitAdminButton.BackColor = Color.IndianRed;
             ExitAdminButton.FlatAppearance.BorderSize = 0;
             ExitAdminButton.FlatStyle = FlatStyle.Flat;
             ExitAdminButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             ExitAdminButton.ForeColor = Color.White;
-            // End of Admin Panel Button Styling
+            ExitAdminButton.Location = new Point(839, 13);
+            ExitAdminButton.Name = "ExitAdminButton";
+            ExitAdminButton.Size = new Size(213, 61);
+            ExitAdminButton.TabIndex = 23;
+            ExitAdminButton.Text = "Вийти";
+            ExitAdminButton.UseVisualStyleBackColor = false;
             ExitAdminButton.Click += ExitAdminButton_Click;
             // 
             // label6
@@ -288,19 +282,17 @@
             // 
             // SearchButtonAdmin
             // 
-            SearchButtonAdmin.Location = new Point(29, 13);
-            SearchButtonAdmin.Name = "SearchButtonAdmin";
-            SearchButtonAdmin.Size = new Size(213, 61);
-            SearchButtonAdmin.TabIndex = 29;
-            SearchButtonAdmin.Text = "Пошук";
-            SearchButtonAdmin.UseVisualStyleBackColor = true;
-            // Admin Panel Button Styling
             SearchButtonAdmin.BackColor = Color.ForestGreen;
             SearchButtonAdmin.FlatAppearance.BorderSize = 0;
             SearchButtonAdmin.FlatStyle = FlatStyle.Flat;
             SearchButtonAdmin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             SearchButtonAdmin.ForeColor = Color.White;
-            // End of Admin Panel Button Styling
+            SearchButtonAdmin.Location = new Point(29, 13);
+            SearchButtonAdmin.Name = "SearchButtonAdmin";
+            SearchButtonAdmin.Size = new Size(213, 61);
+            SearchButtonAdmin.TabIndex = 29;
+            SearchButtonAdmin.Text = "Пошук";
+            SearchButtonAdmin.UseVisualStyleBackColor = false;
             SearchButtonAdmin.Click += SearchButtonAdmin_Click;
             // 
             // flowLayoutPanel1
@@ -325,58 +317,53 @@
             // 
             // ExitEdit
             // 
-            ExitEdit.Location = new Point(640, 13);
-            ExitEdit.Name = "ExitEdit";
-            ExitEdit.Size = new Size(213, 61);
-            ExitEdit.TabIndex = 23;
-            ExitEdit.Text = "Вийти";
-            ExitEdit.UseVisualStyleBackColor = true;
-            // Admin Edit Button Styling
             ExitEdit.BackColor = Color.IndianRed;
             ExitEdit.FlatAppearance.BorderSize = 0;
             ExitEdit.FlatStyle = FlatStyle.Flat;
             ExitEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             ExitEdit.ForeColor = Color.White;
-            // End of Admin Edit Button Styling
+            ExitEdit.Location = new Point(640, 13);
+            ExitEdit.Name = "ExitEdit";
+            ExitEdit.Size = new Size(213, 61);
+            ExitEdit.TabIndex = 23;
+            ExitEdit.Text = "Вийти";
+            ExitEdit.UseVisualStyleBackColor = false;
             ExitEdit.Click += ExitEdit_Click;
             // 
             // CleanEdit
             // 
-            CleanEdit.Location = new Point(335, 13);
-            CleanEdit.Name = "CleanEdit";
-            CleanEdit.Size = new Size(213, 61);
-            CleanEdit.TabIndex = 22;
-            CleanEdit.Text = "Очистити поля";
-            CleanEdit.UseVisualStyleBackColor = true;
-            // Admin Edit Button Styling
             CleanEdit.BackColor = Color.SteelBlue;
             CleanEdit.FlatAppearance.BorderSize = 0;
             CleanEdit.FlatStyle = FlatStyle.Flat;
             CleanEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             CleanEdit.ForeColor = Color.White;
-            // End of Admin Edit Button Styling
+            CleanEdit.Location = new Point(335, 13);
+            CleanEdit.Name = "CleanEdit";
+            CleanEdit.Size = new Size(213, 61);
+            CleanEdit.TabIndex = 22;
+            CleanEdit.Text = "Очистити поля";
+            CleanEdit.UseVisualStyleBackColor = false;
             CleanEdit.Click += CleanEdit_Click;
             // 
             // SaveEdit
             // 
-            SaveEdit.Location = new Point(30, 13);
-            SaveEdit.Name = "SaveEdit";
-            SaveEdit.Size = new Size(213, 61);
-            SaveEdit.TabIndex = 21;
-            SaveEdit.Text = "Зберегти дані";
-            SaveEdit.UseVisualStyleBackColor = true;
-            // Admin Edit Button Styling
             SaveEdit.BackColor = Color.SteelBlue;
             SaveEdit.FlatAppearance.BorderSize = 0;
             SaveEdit.FlatStyle = FlatStyle.Flat;
             SaveEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             SaveEdit.ForeColor = Color.White;
-            // End of Admin Edit Button Styling
+            SaveEdit.Location = new Point(30, 13);
+            SaveEdit.Name = "SaveEdit";
+            SaveEdit.Size = new Size(213, 61);
+            SaveEdit.TabIndex = 21;
+            SaveEdit.Text = "Зберегти дані";
+            SaveEdit.UseVisualStyleBackColor = false;
             SaveEdit.Click += SaveEdit_Click;
             // 
             // AdminPanel
             // 
             AdminPanel.AutoScroll = true;
+            AdminPanel.Controls.Add(AdminCityTextBox);
             AdminPanel.Controls.Add(FullSpecialtiesAdmintextBox);
             AdminPanel.Controls.Add(label38);
             AdminPanel.Controls.Add(DescriptionAdmintextBox);
@@ -396,7 +383,6 @@
             AdminPanel.Controls.Add(label16);
             AdminPanel.Controls.Add(MoneyAdminBox);
             AdminPanel.Controls.Add(label15);
-            AdminPanel.Controls.Add(AdminCityComboBox);
             AdminPanel.Controls.Add(label24);
             AdminPanel.Controls.Add(label7);
             AdminPanel.Controls.Add(label1);
@@ -584,15 +570,6 @@
             label15.TabIndex = 57;
             label15.Text = "Вартість навчання за рік (контракт):";
             // 
-            // AdminCityComboBox
-            // 
-            AdminCityComboBox.FormattingEnabled = true;
-            AdminCityComboBox.Items.AddRange(new object[] { "Денна", "Заочна", "Вечірня" });
-            AdminCityComboBox.Location = new Point(121, 71);
-            AdminCityComboBox.Name = "AdminCityComboBox";
-            AdminCityComboBox.Size = new Size(242, 28);
-            AdminCityComboBox.TabIndex = 56;
-            // 
             // label24
             // 
             label24.AutoSize = true;
@@ -664,6 +641,7 @@
             // AdminEditPanel
             // 
             AdminEditPanel.AutoScroll = true;
+            AdminEditPanel.Controls.Add(EditCityTextBox);
             AdminEditPanel.Controls.Add(FullSpecialtiesEdittextBox);
             AdminEditPanel.Controls.Add(label39);
             AdminEditPanel.Controls.Add(DescriptionEdittextBox);
@@ -673,7 +651,6 @@
             AdminEditPanel.Controls.Add(FullAddressEdittextBox);
             AdminEditPanel.Controls.Add(FullNameEdittextBox);
             AdminEditPanel.Controls.Add(label30);
-            AdminEditPanel.Controls.Add(EditCityComboBox);
             AdminEditPanel.Controls.Add(label23);
             AdminEditPanel.Controls.Add(FotoUnivEditpictureBox);
             AdminEditPanel.Controls.Add(label8);
@@ -774,15 +751,6 @@
             label30.Name = "label30";
             label30.Size = new Size(0, 20);
             label30.TabIndex = 76;
-            // 
-            // EditCityComboBox
-            // 
-            EditCityComboBox.FormattingEnabled = true;
-            EditCityComboBox.Items.AddRange(new object[] { "Денна", "Заочна", "Вечірня" });
-            EditCityComboBox.Location = new Point(135, 71);
-            EditCityComboBox.Name = "EditCityComboBox";
-            EditCityComboBox.Size = new Size(207, 28);
-            EditCityComboBox.TabIndex = 34;
             // 
             // label23
             // 
@@ -970,7 +938,7 @@
             // 
             // nameEditAdminBox
             // 
-            nameEditAdminBox.Location = new Point(124, 15);
+            nameEditAdminBox.Location = new Point(128, 14);
             nameEditAdminBox.Name = "nameEditAdminBox";
             nameEditAdminBox.Size = new Size(470, 27);
             nameEditAdminBox.TabIndex = 20;
@@ -1006,47 +974,54 @@
             // 
             // buttonEditProfileAdmin
             // 
-            buttonEditProfileAdmin.Location = new Point(180, 7);
-            buttonEditProfileAdmin.Name = "buttonEditProfileAdmin";
-            buttonEditProfileAdmin.Size = new Size(150, 30);
-            buttonEditProfileAdmin.TabIndex = 0;
-            buttonEditProfileAdmin.Text = "Редагувати профіль";
-            buttonEditProfileAdmin.UseVisualStyleBackColor = true;
-            // Top Bar Button Styling
             buttonEditProfileAdmin.BackColor = Color.SteelBlue;
             buttonEditProfileAdmin.FlatAppearance.BorderSize = 0;
             buttonEditProfileAdmin.FlatStyle = FlatStyle.Flat;
             buttonEditProfileAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             buttonEditProfileAdmin.ForeColor = Color.White;
-            // End of Top Bar Button Styling
+            buttonEditProfileAdmin.Location = new Point(180, 7);
+            buttonEditProfileAdmin.Name = "buttonEditProfileAdmin";
+            buttonEditProfileAdmin.Size = new Size(150, 30);
+            buttonEditProfileAdmin.TabIndex = 0;
+            buttonEditProfileAdmin.Text = "Редагувати профіль";
+            buttonEditProfileAdmin.UseVisualStyleBackColor = false;
             buttonEditProfileAdmin.Click += buttonEditProfileAdmin_Click;
-            //
+            // 
             // buttonLogoutAdmin
-            //
-            this.buttonLogoutAdmin.Location = new System.Drawing.Point(340, 7);
-            this.buttonLogoutAdmin.Name = "buttonLogoutAdmin";
-            this.buttonLogoutAdmin.Size = new System.Drawing.Size(100, 30);
-            this.buttonLogoutAdmin.TabIndex = 2;
-            this.buttonLogoutAdmin.Text = "Вихід";
-            this.buttonLogoutAdmin.UseVisualStyleBackColor = true;
-            // Top Bar Button Styling
-            this.buttonLogoutAdmin.BackColor = Color.IndianRed;
-            this.buttonLogoutAdmin.FlatAppearance.BorderSize = 0;
-            this.buttonLogoutAdmin.FlatStyle = FlatStyle.Flat;
-            this.buttonLogoutAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            this.buttonLogoutAdmin.ForeColor = Color.White;
-            // End of Top Bar Button Styling
-            this.buttonLogoutAdmin.Click += new System.EventHandler(this.buttonLogoutAdmin_Click);
-            this.Controls.Add(this.buttonLogoutAdmin);
+            // 
+            buttonLogoutAdmin.BackColor = Color.IndianRed;
+            buttonLogoutAdmin.FlatAppearance.BorderSize = 0;
+            buttonLogoutAdmin.FlatStyle = FlatStyle.Flat;
+            buttonLogoutAdmin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            buttonLogoutAdmin.ForeColor = Color.White;
+            buttonLogoutAdmin.Location = new Point(340, 7);
+            buttonLogoutAdmin.Name = "buttonLogoutAdmin";
+            buttonLogoutAdmin.Size = new Size(100, 30);
+            buttonLogoutAdmin.TabIndex = 2;
+            buttonLogoutAdmin.Text = "Вихід";
+            buttonLogoutAdmin.UseVisualStyleBackColor = false;
+            buttonLogoutAdmin.Click += buttonLogoutAdmin_Click;
+            // 
+            // AdminCityTextBox
+            // 
+            AdminCityTextBox.Location = new Point(124, 71);
+            AdminCityTextBox.Name = "AdminCityTextBox";
+            AdminCityTextBox.Size = new Size(470, 27);
+            AdminCityTextBox.TabIndex = 86;
+            // 
+            // EditCityTextBox
+            // 
+            EditCityTextBox.Location = new Point(128, 67);
+            EditCityTextBox.Name = "EditCityTextBox";
+            EditCityTextBox.Size = new Size(470, 27);
+            EditCityTextBox.TabIndex = 88;
             // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.GhostWhite;
             ClientSize = new Size(1537, 1055);
-            // Form Background Color
-            this.BackColor = Color.GhostWhite;
-            // End of Form Background Color
             Controls.Add(buttonLogoutAdmin);
             Controls.Add(buttonEditProfileAdmin);
             Controls.Add(labelCurrentUserAdmin);
@@ -1113,9 +1088,7 @@
         private TextBox MaxMoneyAdminBox;
         private TextBox MinMoneyAdminBox;
         private Label label22;
-        private ComboBox EditCityComboBox;
         private Label label23;
-        private ComboBox AdminCityComboBox;
         private Label label24;
         private Label label15;
         private TextBox MoneyAdminBox;
@@ -1157,5 +1130,7 @@
         private Label labelCurrentUserAdmin;
         private Button buttonEditProfileAdmin;
         private Button buttonLogoutAdmin;
+        private TextBox AdminCityTextBox;
+        private TextBox EditCityTextBox;
     }
 }

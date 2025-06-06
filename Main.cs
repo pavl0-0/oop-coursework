@@ -18,22 +18,38 @@ namespace CourseWork
         private UserMananger _userMananger;
         private bool isNavigating = false;
 
-        public Main(string role)
+        public Main(string role, UniversitiesManager universitiesManager)
         {
             InitializeComponent();
             userRole = role;
-            _universitiesManager = new UniversitiesManager();
-            LoadUniqueCitiesToComboBox();
-            _userMananger = new UserMananger();
+            _universitiesManager = universitiesManager;
+            _userMananger = new UserMananger(_universitiesManager);
             this.FormClosing += Main_FormClosing;
         }
 
-        private void LoadUniqueCitiesToComboBox()
+        private void SetupAutoComplete()
         {
-            var uniqueCities = _universitiesManager.GetUniqueCities();
+            var names = _universitiesManager.GetAllNames();
+            SetAutoComplete(NameMainBox, names);
 
-            CityMainComboBox.Items.Clear();
-            CityMainComboBox.Items.AddRange(uniqueCities.ToArray());
+            var cities = _universitiesManager.GetUniqueCities();
+            SetAutoComplete(CityMainTextBox, cities);
+
+            var addresses = _universitiesManager.GetAllAddresses();
+            SetAutoComplete(AddressMainBox, addresses);
+
+            var specialties = _universitiesManager.GetAllSpecialties();
+            SetAutoComplete(SpecialtyMainBox, specialties);
+        }
+
+        private void SetAutoComplete(TextBox box, IEnumerable<string> items)
+        {
+            var autoSource = new AutoCompleteStringCollection();
+            autoSource.AddRange(items.Where(i => !string.IsNullOrWhiteSpace(i)).Distinct().ToArray());
+
+            box.AutoCompleteCustomSource = autoSource;
+            box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            box.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -48,6 +64,7 @@ namespace CourseWork
             }
 
             labelCurrentUser.Text = $"Вітаємо, {CurrentUser.FullName}!";
+            SetupAutoComplete();
         }
 
         private void AddAdminButton_Click(object sender, EventArgs e)
@@ -60,22 +77,41 @@ namespace CourseWork
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            string searchName = NameMainBox.Text.Trim();
-            string searchAddress = AddressMainBox.Text.Trim();
-            string searchSpecialty = SpecialtyMainBox.Text.Trim();
-            string searchMinMark = MinMarkMainBox.Text.Trim();
-            string searchMaxMark = MaxMarkMainBox.Text.Trim();
-            string searchMinMoney = MinMoneyMainBox.Text.Trim();
-            string searchMaxMoney = MaxMoneyMainBox.Text.Trim();
-            string searchForm = FormComboBox.Text.Trim();
-            string searchCity = CityMainComboBox.Text.Trim();
+            string cityFilter = CityMainTextBox.Text;
+            string learnFormFilter = FormComboBox.SelectedItem?.ToString();
 
-            var filteredUniversities = _universitiesManager.SearchUniversities(
-                searchName, searchAddress, searchSpecialty, searchMinMark, searchMaxMark,
-                searchMinMoney, searchMaxMoney, searchForm, searchCity
+            string nameFilter = NameMainBox.Text;
+            string addressFilter = AddressMainBox.Text;
+
+            int? Specialties = null;
+            if (int.TryParse(SpecialtyMainBox.Text, out int sp)) Specialties = sp;
+
+            decimal? minMark = null;
+            if (decimal.TryParse(MinMarkMainBox.Text, out decimal mkMin)) minMark = mkMin;
+
+            decimal? maxMark = null;
+            if (decimal.TryParse(MaxMarkMainBox.Text, out decimal mkMax)) maxMark = mkMax;
+
+            decimal? minMoney = null;
+            if (decimal.TryParse(MinMoneyMainBox.Text, out decimal mnMin)) minMoney = mnMin;
+
+            decimal? maxMoney = null;
+            if (decimal.TryParse(MaxMoneyMainBox.Text, out decimal mnMax)) maxMoney = mnMax;
+
+            List<Universities> filteredUniversities = _universitiesManager.SearchUniversities(
+                name: nameFilter,
+                address: addressFilter,
+                specialty: Specialties?.ToString(),
+                minMark: minMark?.ToString(),
+                maxMark: maxMark?.ToString(),
+                minMoney: minMoney?.ToString(),
+                maxMoney: maxMoney?.ToString(),
+                form: learnFormFilter,
+                city: cityFilter
             );
 
-            DisplayUniversities(filteredUniversities, true);
+            flowLayoutPanel1.Controls.Clear();
+            DisplayUniversities(filteredUniversities);
         }
 
         private Panel CreateNewPanel()
@@ -83,20 +119,21 @@ namespace CourseWork
             var panel = new Panel();
             panel.Size = new Size(700, 250);
 
-            var labelName = new Label { Name = "NameUniv", AutoSize = true, Location = new Point(10, 10) };
-            var labelCity = new Label { Name = "City", AutoSize = true, Location = new Point(10, 40) };
-            var labelAddress = new Label { Name = "Address", AutoSize = true, Location = new Point(10, 70) };
-            var labelSpecialty = new Label { Name = "Specialty", AutoSize = true, Location = new Point(10, 100) };
-            var labelMinMark = new Label { Name = "MinMark", AutoSize = true, Location = new Point(10, 130) };
-            var labelMaxMark = new Label { Name = "MaxMark", AutoSize = true, Location = new Point(10, 160) };
-            var labelForm = new Label { Name = "LearnForm", AutoSize = true, Location = new Point(10, 190) };
-            var labelTuitionFee = new Label { Name = "Money", AutoSize = true, Location = new Point(10, 220) };
+            var labelName = new Label { Name = "labelName", AutoSize = true, Location = new Point(10, 10) };
+            var labelCity = new Label { Name = "labelCity", AutoSize = true, Location = new Point(10, 40) };
+            var labelAddress = new Label { Name = "labelAddress", AutoSize = true, Location = new Point(10, 70) };
+            var labelSpecialty = new Label { Name = "labelSpecialties", AutoSize = true, Location = new Point(10, 100) };
+            var labelMinMark = new Label { Name = "labelMinMark", AutoSize = true, Location = new Point(10, 130) };
+            var labelMaxMark = new Label { Name = "labelMaxMark", AutoSize = true, Location = new Point(10, 160) };
+            var labelForm = new Label { Name = "labelLearnForm", AutoSize = true, Location = new Point(10, 190) };
+            var labelTuitionFee = new Label { Name = "labelMoney", AutoSize = true, Location = new Point(10, 220) };
 
             var detailsButton = new Button
             {
                 Text = "Детальніше",
                 Location = new Point(500, 150),
-                Size = new Size(100, 30)
+                Size = new Size(100, 30),
+                Name = "DetailsButton"
             };
 
             var saveButton = new Button
@@ -117,56 +154,55 @@ namespace CourseWork
             return panel;
         }
 
-        private void DisplayUniversities(List<Universities> universities, bool showSaveButton)
+        private void UpdateUniversityPanelWithData(Panel panel, Universities university)
         {
-            flowLayoutPanel1.Controls.Clear();
+            Label nameLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelName");
+            Label cityLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelCity");
+            Label addressLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelAddress");
+            Label specialtiesLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelSpecialties");
+            Label minMarkLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelMinMark");
+            Label maxMarkLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelMaxMark");
+            Label learnFormLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelLearnForm");
+            Label moneyLabel = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Name == "labelMoney");
+            Button detailsButton = panel.Controls.OfType<Button>().FirstOrDefault(b => b.Name == "DetailsButton");
+            Button saveButton = panel.Controls.OfType<Button>().FirstOrDefault(b => b.Name == "SaveButton");
 
-            if (universities.Count > 0)
+            if (nameLabel != null)
             {
-                foreach (var university in universities)
-                {
-                    Panel panel = CreateNewPanel();
-                    UpdatePanelWithUniversityData(panel, university, showSaveButton);
-                    flowLayoutPanel1.Controls.Add(panel);
-                }
+                nameLabel.Text = $"Назва: {university.Basic?.Name ?? "N/A"}";
             }
-            else
+            if (cityLabel != null)
             {
-                MessageBox.Show("Нічого не знайдено.");
+                cityLabel.Text = $"Місто: {university.Basic?.City ?? "N/A"}";
             }
-        }
-
-        private void UpdatePanelWithUniversityData(Panel panel, Universities university, bool showSaveButton)
-        {
-            if (panel.Controls["NameUniv"] is Label name)
-                name.Text = $"Назва ВНЗ: {university.Name}";
-
-            if (panel.Controls["City"] is Label city)
-                city.Text = $"Місто: {university.City}";
-
-            if (panel.Controls["Address"] is Label address)
-                address.Text = $"Адреса: {university.Address}";
-
-            if (panel.Controls["Specialty"] is Label specialty)
-                specialty.Text = $"Спеціальність: {university.Specialties}";
-
-            if (panel.Controls["MinMark"] is Label minMark)
-                minMark.Text = $"Мінімальний конкурс: {university.MinMark}";
-
-            if (panel.Controls["MaxMark"] is Label maxMark)
-                maxMark.Text = $"Максимальний конкурс: {university.MaxMark}";
-
-            if (panel.Controls["LearnForm"] is Label form)
-                form.Text = $"Форма навчання: {university.LearnForm}";
-
-            if (panel.Controls["Money"] is Label money)
-                money.Text = $"Вартість навчання: {university.Money} грн.";
-
-            Button detailsButton = panel.Controls.OfType<Button>().FirstOrDefault(b => b.Text == "Детальніше");
-            Button saveButton = panel.Controls.OfType<Button>().FirstOrDefault(b => b.Name == "SaveButton"); 
+            if (addressLabel != null)
+            {
+                addressLabel.Text = $"Адреса: {university.Basic?.Address ?? "N/A"}";
+            }
+            if (specialtiesLabel != null)
+            {
+                specialtiesLabel.Text = $"Спеціальності: {university.Basic?.Specialties.ToString() ?? "N/A"}";
+            }
+            if (minMarkLabel != null)
+            {
+                minMarkLabel.Text = $"Мін. бал: {university.Stats?.MinMark.ToString() ?? "N/A"}";
+            }
+            if (maxMarkLabel != null)
+            {
+                maxMarkLabel.Text = $"Макс. бал: {university.Stats?.MaxMark.ToString() ?? "N/A"}";
+            }
+            if (learnFormLabel != null)
+            {
+                learnFormLabel.Text = $"Форма навчання: {university.Basic?.LearnForm ?? "N/A"}";
+            }
+            if (moneyLabel != null)
+            {
+                moneyLabel.Text = $"Вартість: {university.Stats?.Money.ToString("C") ?? "N/A"}";
+            }
 
             if (detailsButton != null)
             {
+                detailsButton.Tag = university;
                 detailsButton.Click += (s, e) =>
                 {
                     Info infoForm = new Info(university);
@@ -178,10 +214,18 @@ namespace CourseWork
             {
                 saveButton.Tag = university;
                 saveButton.Click += SaveButton_Click;
-                saveButton.Visible = showSaveButton;
             }
         }
 
+        private void DisplayUniversities(List<Universities> universitiesToDisplay)
+        {
+            foreach (var university in universitiesToDisplay)
+            {
+                Panel universityPanel = CreateNewPanel();
+                UpdateUniversityPanelWithData(universityPanel, university);
+                flowLayoutPanel1.Controls.Add(universityPanel);
+            }
+        }
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
         }
@@ -222,7 +266,7 @@ namespace CourseWork
 
         private void buttonEditProfile_Click(object sender, EventArgs e)
         {
-            EditProfileForm editForm = new EditProfileForm();
+            EditProfileForm editForm = new EditProfileForm(_universitiesManager);
             editForm.ShowDialog();
             labelCurrentUser.Text = $"Вітаємо, {CurrentUser.FullName}!";
         }
@@ -233,7 +277,7 @@ namespace CourseWork
             if (result == DialogResult.Yes)
             {
                 CurrentUser.Clear();
-                Applicants_Handbook applicantsHandbook = new Applicants_Handbook();
+                Applicants_Handbook applicantsHandbook = new Applicants_Handbook(_universitiesManager);
                 applicantsHandbook.Show();
                 isNavigating = true;
                 this.Close();
@@ -249,7 +293,7 @@ namespace CourseWork
                 return;
             }
 
-            SavedUniversitiesForm savedForm = new SavedUniversitiesForm(currentUsername);
+            SavedUniversitiesForm savedForm = new SavedUniversitiesForm(currentUsername, _universitiesManager);
             savedForm.ShowDialog();
             flowLayoutPanel1.Controls.Clear();
         }
@@ -270,7 +314,7 @@ namespace CourseWork
                 try
                 {
                     _userMananger.AddSavedUniversity(currentUsername, universityToSave.Id);
-                    MessageBox.Show($"Університет '{universityToSave.Name}' успішно збережено!");
+                    MessageBox.Show($"Університет '{universityToSave.Basic?.Name}' успішно збережено!");
                 }
                 catch (Exception ex)
                 {

@@ -28,44 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DeleteSavedButton = new Button();
             flowLayoutPanelSaved = new FlowLayoutPanel();
+            ExportAllButton = new Button();
             SuspendLayout();
-            // 
-            // DeleteSavedButton
-            // 
-            DeleteSavedButton.Location = new Point(269, 96);
-            DeleteSavedButton.Name = "DeleteSavedButton";
-            DeleteSavedButton.Size = new Size(148, 51);
-            DeleteSavedButton.TabIndex = 0;
-            DeleteSavedButton.Text = "button1";
-            DeleteSavedButton.UseVisualStyleBackColor = true;
-            DeleteSavedButton.Click += DeleteSavedButton_Click;
             // 
             // flowLayoutPanelSaved
             // 
             flowLayoutPanelSaved.AutoScroll = true;
-            flowLayoutPanelSaved.Dock = DockStyle.Fill;
-            flowLayoutPanelSaved.Location = new Point(0, 0);
+            flowLayoutPanelSaved.Location = new Point(1, 71);
             flowLayoutPanelSaved.Name = "flowLayoutPanelSaved";
             flowLayoutPanelSaved.Size = new Size(800, 450);
             flowLayoutPanelSaved.TabIndex = 0;
+            // 
+            // ExportAllButton
+            // 
+            ExportAllButton.Location = new Point(12, 12);
+            ExportAllButton.Name = "ExportAllButton";
+            ExportAllButton.Size = new Size(204, 53);
+            ExportAllButton.TabIndex = 1;
+            ExportAllButton.Text = "Експортувати";
+            ExportAllButton.UseVisualStyleBackColor = true;
+            ExportAllButton.Click += ExportAllButton_Click;
             // 
             // SavedUniversitiesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 519);
+            Controls.Add(ExportAllButton);
             Controls.Add(flowLayoutPanelSaved);
-            Controls.Add(DeleteSavedButton);
             Name = "SavedUniversitiesForm";
             Text = "SavedUniversitiesForm";
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button DeleteSavedButton;
         private FlowLayoutPanel flowLayoutPanelSaved;
+        private Button ExportAllButton;
     }
 }

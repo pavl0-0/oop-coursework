@@ -26,19 +26,35 @@ namespace CourseWork
             _universitiesManager = new UniversitiesManager();
             AdminEditPanel.Visible = false;
             AdminEditButton.Visible = false;
-
-            LoadUniqueCitiesToComboBox();
             this.FormClosing += Admin_FormClosing;
         }
 
-        private void LoadUniqueCitiesToComboBox()
+        private void SetupAutoComplete()
         {
-            var uniqueCities = _universitiesManager.GetUniqueCities();
+            var names = _universitiesManager.GetAllNames();
+            SetAutoComplete(new[] { nameAdminBox, nameEditAdminBox }, names);
 
-            AdminCityComboBox.Items.Clear();
-            AdminCityComboBox.Items.AddRange(uniqueCities.ToArray());
-            EditCityComboBox.Items.Clear();
-            EditCityComboBox.Items.AddRange(uniqueCities.ToArray());
+            var cities = _universitiesManager.GetUniqueCities();
+            SetAutoComplete(new[] { AdminCityTextBox, EditCityTextBox}, cities);
+
+            var addresses = _universitiesManager.GetAllAddresses();
+            SetAutoComplete(new[] { AddressAdminBox, AddressEditAdminBox}, addresses);
+
+            var specialties = _universitiesManager.GetAllSpecialties();
+            SetAutoComplete(new[] { SpecialtyAdminBox, SpecialtyEditAdminBox}, specialties);
+        }
+
+        private void SetAutoComplete(IEnumerable<TextBox> boxes, IEnumerable<string> items)
+        {
+            var autoSource = new AutoCompleteStringCollection();
+            autoSource.AddRange(items.Where(i => !string.IsNullOrWhiteSpace(i)).Distinct().ToArray());
+
+            foreach (var box in boxes)
+            {
+                box.AutoCompleteCustomSource = autoSource;
+                box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                box.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
         }
 
         private void SaveAdminButton_Click(object sender, EventArgs e)
@@ -51,7 +67,6 @@ namespace CourseWork
                 return;
             }
 
-            string city = AdminCityComboBox.Text.Trim();
             string form = FormComboBox.SelectedItem?.ToString() ?? "";
             if (string.IsNullOrWhiteSpace(form))
             {
@@ -73,36 +88,44 @@ namespace CourseWork
 
             var newUniversity = new Universities
             {
-                Name = nameAdminBox.Text,
-                City = city,
-                Address = AddressAdminBox.Text,
-                Specialties = specialty,
-                LearnForm = form,
-                MinMark = minMark,
-                MaxMark = maxMark,
-                Money = money,
-                UniversityNameFull = FullNameAdmintextBox.Text,
-                AddressFull = FullAddressAdmintextBox.Text,
-                SpecialtiesFull = FullSpecialtiesAdmintextBox.Text,
-                MarksFull = FullMarksAdmintextBox.Text,
-                LearnFormFull = FullFormAdmintextBox.Text,
-                MoneyFull = FullMoneyAdmintextBox.Text,
-                DescriptionFull = DescriptionAdmintextBox.Text,
-                PhotoPath = _photoPathForNewUniversity
+                Basic = new UniversityBasic
+                {
+                    Name = nameAdminBox.Text,
+                    City = AdminCityTextBox.Text,
+                    Address = AddressAdminBox.Text,
+                    Specialties = specialty,
+                    LearnForm = form
+                },
+                Stats = new UniversityStats
+                {
+                    MinMark = minMark,
+                    MaxMark = maxMark,
+                    Money = money
+                },
+                Details = new UniversityDetails
+                {
+                    UniversityNameFull = FullNameAdmintextBox.Text,
+                    AddressFull = FullAddressAdmintextBox.Text,
+                    SpecialtiesFull = FullSpecialtiesAdmintextBox.Text,
+                    MarksFull = FullMarksAdmintextBox.Text,
+                    LearnFormFull = FullFormAdmintextBox.Text,
+                    MoneyFull = FullMoneyAdmintextBox.Text,
+                    DescriptionFull = DescriptionAdmintextBox.Text,
+                    PhotoPath = _photoPathForNewUniversity
+                }
             };
 
             _universitiesManager.AddUniversity(newUniversity);
 
             MessageBox.Show("Університет успішно збережено!");
             ClearButtonAdmin_Click(sender, e);
-            LoadUniqueCitiesToComboBox();
+            SetupAutoComplete();
         }
 
         private void ClearButtonAdmin_Click(object sender, EventArgs e)
         {
             nameAdminBox.Text = "";
-            AdminCityComboBox.SelectedIndex = -1;
-            AdminCityComboBox.Text = "";
+            AdminCityTextBox.Text = "";
             AddressAdminBox.Text = "";
             SpecialtyAdminBox.Text = "";
             FormComboBox.SelectedIndex = -1;
@@ -120,14 +143,16 @@ namespace CourseWork
             DescriptionAdmintextBox.Text = "";
             FotoUnivAdminpictureBox.Image = null;
             _photoPathForNewUniversity = null;
+            SetupAutoComplete();
         }
 
         private void ExitAdminButton_Click(object sender, EventArgs e)
         {
-            Main main = new Main("admin");
+            Main main = new Main("admin", _universitiesManager);
             main.Show();
             isNavigating = true;
             this.Close();
+            SetupAutoComplete();
         }
 
         private void SearchButtonAdmin_Click(object sender, EventArgs e)
@@ -140,7 +165,7 @@ namespace CourseWork
             string searchMinMoney = MinMoneyAdminBox.Text.Trim();
             string searchMaxMoney = MaxMoneyAdminBox.Text.Trim();
             string searchForm = FormComboBox.Text.Trim();
-            string searchCity = AdminCityComboBox.Text.Trim();
+            string searchCity = AdminCityTextBox.Text.Trim();
 
             var filteredUniversities = _universitiesManager.SearchUniversities(
                 searchName, searchAddress, searchSpecialty, searchMinMark, searchMaxMark,
@@ -206,28 +231,28 @@ namespace CourseWork
         private void UpdatePanelWithUniversityData(Panel panel, Universities university)
         {
             if (panel.Controls["NameUniv"] is Label name)
-                name.Text = $"Назва ВНЗ: {university.Name}";
+                name.Text = $"Назва ВНЗ: {university.Basic.Name}";
 
             if (panel.Controls["City"] is Label city)
-                city.Text = $"Місто: {university.City}";
+                city.Text = $"Місто: {university.Basic.City}";
 
             if (panel.Controls["Address"] is Label address)
-                address.Text = $"Адреса: {university.Address}";
+                address.Text = $"Адреса: {university.Basic.Address}";
 
             if (panel.Controls["Specialty"] is Label specialty)
-                specialty.Text = $"Спеціальність: {university.Specialties}";
+                specialty.Text = $"Спеціальність: {university.Basic.Specialties}";
 
             if (panel.Controls["MinMark"] is Label minMark)
-                minMark.Text = $"Мінімальний конкурс: {university.MinMark}";
+                minMark.Text = $"Мінімальний конкурс: {university.Stats.MinMark}";
 
             if (panel.Controls["MaxMark"] is Label maxMark)
-                maxMark.Text = $"Максимальний конкурс: {university.MaxMark}";
+                maxMark.Text = $"Максимальний конкурс: {university.Stats.MaxMark}";
 
             if (panel.Controls["LearnForm"] is Label form)
-                form.Text = $"Форма навчання: {university.LearnForm}";
+                form.Text = $"Форма навчання: {university.Basic.LearnForm}";
 
             if (panel.Controls["Money"] is Label money)
-                money.Text = $"Вартість навчання: {university.Money} грн.";
+                money.Text = $"Вартість навчання: {university.Stats.Money} грн.";
 
             foreach (Control control in panel.Controls)
             {
@@ -243,24 +268,24 @@ namespace CourseWork
                             AdminEditButton.Visible = true;
                             universityBeingEdited = university;
 
-                            nameEditAdminBox.Text = university.Name;
-                            AddressEditAdminBox.Text = university.Address;
-                            SpecialtyEditAdminBox.Text = university.Specialties.ToString();
-                            MinMarkEditAdminBox.Text = university.MinMark.ToString();
-                            MaxMarkEditAdminBox.Text = university.MaxMark.ToString();
-                            EditCityComboBox.Text = university.City;
-                            MoneyEditAdminBox.Text = university.Money.ToString();
-                            FormEditComboBox.Text = university.LearnForm;
-                            FullNameEdittextBox.Text = university.UniversityNameFull;
-                            FullAddressEdittextBox.Text = university.AddressFull;
-                            FullSpecialtiesEdittextBox.Text = university.SpecialtiesFull;
-                            FullMarksEdittextBox.Text = university.MarksFull;
-                            FullFormEdittextBox.Text = university.LearnFormFull;
-                            FullMoneyEdittextBox.Text = university.MoneyFull;
-                            DescriptionEdittextBox.Text = university.DescriptionFull;
-                            if (!string.IsNullOrEmpty(university.PhotoPath) && File.Exists(university.PhotoPath))
+                            nameEditAdminBox.Text = university.Basic.Name;
+                            AddressEditAdminBox.Text = university.Basic.Address;
+                            SpecialtyEditAdminBox.Text = university.Basic.Specialties.ToString();
+                            MinMarkEditAdminBox.Text = university.Stats.MinMark.ToString();
+                            MaxMarkEditAdminBox.Text = university.Stats.MaxMark.ToString();
+                            EditCityTextBox.Text = university.Basic.City;
+                            MoneyEditAdminBox.Text = university.Stats.Money.ToString();
+                            FormEditComboBox.Text = university.Basic.LearnForm;
+                            FullNameEdittextBox.Text = university.Details.UniversityNameFull;
+                            FullAddressEdittextBox.Text = university.Details.AddressFull;
+                            FullSpecialtiesEdittextBox.Text = university.Details.SpecialtiesFull;
+                            FullMarksEdittextBox.Text = university.Details.MarksFull;
+                            FullFormEdittextBox.Text = university.Details.LearnFormFull;
+                            FullMoneyEdittextBox.Text = university.Details.MoneyFull;
+                            DescriptionEdittextBox.Text = university.Details.DescriptionFull;
+                            if (!string.IsNullOrEmpty(university.Details.PhotoPath) && File.Exists(university.Details.PhotoPath))
                             {
-                                FotoUnivEditpictureBox.Image = Image.FromFile(university.PhotoPath);
+                                FotoUnivEditpictureBox.Image = Image.FromFile(university.Details.PhotoPath);
                             }
                             else
                             {
@@ -275,7 +300,7 @@ namespace CourseWork
                             var result = MessageBox.Show("Ви впевнені, що хочете видалити університет?", "Підтвердження", MessageBoxButtons.YesNo);
                             if (result == DialogResult.Yes)
                             {
-                                _universitiesManager.DeleteUniversity(university.Name, university.Address);
+                                _universitiesManager.DeleteUniversity(university.Id);
                                 SearchButtonAdmin_Click(null, null);
                             }
                         };
@@ -314,22 +339,34 @@ namespace CourseWork
             var updatedUniversityData = new Universities
             {
                 Id = universityBeingEdited.Id,
-                Name = nameEditAdminBox.Text,
-                City = EditCityComboBox.Text,
-                Address = AddressEditAdminBox.Text,
-                Specialties = specialty,
-                LearnForm = FormEditComboBox.Text,
-                MinMark = minMark,
-                MaxMark = maxMark,
-                Money = money,
-                UniversityNameFull = FullNameEdittextBox.Text,
-                AddressFull = FullAddressEdittextBox.Text,
-                SpecialtiesFull = FullSpecialtiesEdittextBox.Text,
-                MarksFull = FullMarksEdittextBox.Text,
-                LearnFormFull = FullFormEdittextBox.Text,
-                MoneyFull = FullMoneyEdittextBox.Text,
-                DescriptionFull = DescriptionEdittextBox.Text,
-                PhotoPath = universityBeingEdited.PhotoPath
+                Basic = new UniversityBasic
+                {
+                    Id = universityBeingEdited.Basic.Id,
+                    Name = nameEditAdminBox.Text,
+                    City = EditCityTextBox.Text,
+                    Address = AddressEditAdminBox.Text,
+                    Specialties = specialty,
+                    LearnForm = FormEditComboBox.Text
+                },
+                Stats = new UniversityStats
+                {
+                    Id = universityBeingEdited.Stats.Id,
+                    MinMark = minMark,
+                    MaxMark = maxMark,
+                    Money = money
+                },
+                Details = new UniversityDetails
+                {
+                    Id = universityBeingEdited.Details.Id,
+                    UniversityNameFull = FullNameEdittextBox.Text,
+                    AddressFull = FullAddressEdittextBox.Text,
+                    SpecialtiesFull = FullSpecialtiesEdittextBox.Text,
+                    MarksFull = FullMarksEdittextBox.Text,
+                    LearnFormFull = FullFormEdittextBox.Text,
+                    MoneyFull = FullMoneyEdittextBox.Text,
+                    DescriptionFull = DescriptionEdittextBox.Text,
+                    PhotoPath = universityBeingEdited.Details.PhotoPath
+                }
             };
 
             _universitiesManager.UpdateUniversity(updatedUniversityData);
@@ -341,14 +378,13 @@ namespace CourseWork
             AdminPanel.Visible = true;
             AdminPanelButton.Visible = true;
             SearchButtonAdmin_Click(null, null);
-            LoadUniqueCitiesToComboBox();
+            SetupAutoComplete();
         }
 
         private void CleanEdit_Click(object sender, EventArgs e)
         {
             nameEditAdminBox.Text = "";
-            EditCityComboBox.SelectedIndex = -1;
-            EditCityComboBox.Text = "";
+            EditCityTextBox.Text = "";
             AddressEditAdminBox.Text = "";
             SpecialtyEditAdminBox.Text = "";
             FormEditComboBox.SelectedIndex = -1;
@@ -363,6 +399,7 @@ namespace CourseWork
             FullMoneyEdittextBox.Text = "";
             DescriptionEdittextBox.Text = "";
             FotoUnivEditpictureBox.Image = null;
+            SetupAutoComplete();
         }
 
         private void ExitEdit_Click(object sender, EventArgs e)
@@ -371,6 +408,7 @@ namespace CourseWork
             AdminEditPanel.Visible = false;
             AdminPanel.Visible = true;
             AdminPanelButton.Visible = true;
+            SetupAutoComplete();
         }
 
         private void FotoUnivAdminpictureBox_Click(object sender, EventArgs e)
@@ -415,7 +453,7 @@ namespace CourseWork
                     {
                         FotoUnivEditpictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                         FotoUnivEditpictureBox.Image = Image.FromFile(openFileDialog.FileName);
-                        universityBeingEdited.PhotoPath = openFileDialog.FileName;
+                        universityBeingEdited.Details.PhotoPath = openFileDialog.FileName;
                     }
                     catch (Exception ex)
                     {
@@ -452,7 +490,7 @@ namespace CourseWork
 
         private void buttonEditProfileAdmin_Click(object sender, EventArgs e)
         {
-            EditProfileForm editForm = new EditProfileForm();
+            EditProfileForm editForm = new EditProfileForm(_universitiesManager);
             editForm.ShowDialog();
             labelCurrentUserAdmin.Text = $"Вітаємо, {CurrentUser.FullName}!";
         }
@@ -460,6 +498,7 @@ namespace CourseWork
         private void Admin_Load(object sender, EventArgs e)
         {
             labelCurrentUserAdmin.Text = $"Вітаємо, {CurrentUser.FullName}!";
+            SetupAutoComplete();
         }
 
         private void buttonLogoutAdmin_Click(object sender, EventArgs e)
@@ -468,7 +507,7 @@ namespace CourseWork
             if (result == DialogResult.Yes)
             {
                 CurrentUser.Clear();
-                Applicants_Handbook applicantsHandbook = new Applicants_Handbook();
+                Applicants_Handbook applicantsHandbook = new Applicants_Handbook(_universitiesManager);
                 applicantsHandbook.Show();
                 isNavigating = true;
                 this.Close();

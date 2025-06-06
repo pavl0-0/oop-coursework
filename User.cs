@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace CourseWork
 {
@@ -24,13 +23,12 @@ namespace CourseWork
         private const string AdminLogin = "admin";
         private const string AdminPasswordHash = "ZehL4zUy\u002B3hMSBKWdfnv86aCsnFowOp0Syz1juAjN8U=";
         private List<User> users;
+        private UniversitiesManager _universitiesManager;
 
-        private List<Universities> universities;
-
-        public UserMananger()
+        public UserMananger(UniversitiesManager universitiesManager)
         {
             this.users = LoadUsers();
-            this.universities = LoadUniversities();
+            _universitiesManager = universitiesManager;
         }
 
         public List<User> LoadUsers()
@@ -48,24 +46,6 @@ namespace CourseWork
         {
             string json = JsonSerializer.Serialize(usersToSave, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(FilePath, json);
-        }
-
-        public List<Universities> LoadUniversities()
-        {
-            const string UniversitiesFilePath = "universities_database.json"; 
-            if (!File.Exists(UniversitiesFilePath))
-            {
-                return new List<Universities>();
-            }
-            string json = File.ReadAllText(UniversitiesFilePath);
-            return JsonSerializer.Deserialize<List<Universities>>(json) ?? new List<Universities>();
-        }
-
-        public void SaveUniversities(List<Universities> unisToSave)
-        {
-            const string UniversitiesFilePath = "universities_database.json";
-            string json = JsonSerializer.Serialize(unisToSave, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(UniversitiesFilePath, json);
         }
 
         public bool Register(string username, string password, string fullName)
@@ -135,7 +115,9 @@ namespace CourseWork
 
             var savedIds = user.SavedUniversityIds;
 
-            var savedUnis = this.universities.Where(u => savedIds.Contains(u.Id)).ToList();
+            var allUniversities = _universitiesManager.GetAllUniversities();
+
+            var savedUnis = allUniversities.Where(u => savedIds.Contains(u.Id)).ToList();
 
             return savedUnis;
         }
@@ -165,7 +147,7 @@ namespace CourseWork
 
         public Universities GetUniversityById(string id)
         {
-            return universities.FirstOrDefault(u => u.Id == id);
+            return _universitiesManager.GetUniversityById(id);
         }
     }
 }

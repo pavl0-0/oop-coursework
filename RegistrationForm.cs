@@ -6,11 +6,13 @@ namespace CourseWork
     public partial class RegistrationForm : Form
     {
         private UserMananger userManager;
+        private UniversitiesManager _universitiesManager;
 
-        public RegistrationForm()
+        public RegistrationForm(UniversitiesManager universitiesManager)
         {
+            _universitiesManager = universitiesManager;
             InitializeComponent();
-            userManager = new UserMananger();
+            userManager = new UserMananger(_universitiesManager);
             this.FormClosing += RegistrationForm_FormClosing;
         }
 
@@ -41,7 +43,7 @@ namespace CourseWork
                 CurrentUser.Role = userManager.Login(username, password);
                 CurrentUser.FullName = fullName;
 
-                Main mainForm = new Main(CurrentUser.Role);
+                Main mainForm = new Main(CurrentUser.Role, _universitiesManager);
                 mainForm.Show();
                 this.Hide();
             }
@@ -73,7 +75,7 @@ namespace CourseWork
 
         private void LogLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LogInForm logForm = new LogInForm();
+            LogInForm logForm = new LogInForm(_universitiesManager);
             logForm.Show();
             this.Hide();
         }

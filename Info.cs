@@ -17,21 +17,21 @@ namespace CourseWork
 
         private void Info_Load(object sender, EventArgs e)
         {
-            if (_university != null)
+            if (_university != null && _university.Details != null)
             {
-                labelNameFull.Text = $"Повна назва: {_university.UniversityNameFull}";
-                labelAddressFull.Text = $"Повна адреса: {_university.AddressFull}";
-                labelSpecialtiesFull.Text = $"Повні спеціальності: {_university.SpecialtiesFull}";
-                labelMarksFull.Text = $"Повні бали ЗНО: {_university.MarksFull}";
-                labelLearnFormFull.Text = $"Повна форма навчання: {_university.LearnFormFull}";
-                labelMoneyFull.Text = $"Повна вартість (рік): {_university.MoneyFull}";
-                textBoxDescriptionFull.Text = _university.DescriptionFull;
+                labelNameFull.Text = $"Повна назва: {_university.Details.UniversityNameFull ?? "N/A"}";
+                labelAddressFull.Text = $"Повна адреса: {_university.Details.AddressFull ?? "N/A"}";
+                labelSpecialtiesFull.Text = $"Повні спеціальності: {_university.Details.SpecialtiesFull ?? "N/A"}";
+                labelMarksFull.Text = $"Повні бали ЗНО: {_university.Details.MarksFull ?? "N/A"}";
+                labelLearnFormFull.Text = $"Повна форма навчання: {_university.Details.LearnFormFull ?? "N/A"}";
+                labelMoneyFull.Text = $"Повна вартість (рік): {_university.Details.MoneyFull ?? "N/A"}";
+                textBoxDescriptionFull.Text = _university.Details.DescriptionFull ?? "N/A";
 
-                if (!string.IsNullOrEmpty(_university.PhotoPath) && File.Exists(_university.PhotoPath))
+                if (!string.IsNullOrEmpty(_university.Details.PhotoPath) && File.Exists(_university.Details.PhotoPath))
                 {
                     try
                     {
-                        pictureBoxUniversity.Image = Image.FromFile(_university.PhotoPath);
+                        pictureBoxUniversity.Image = Image.FromFile(_university.Details.PhotoPath);
                     }
                     catch (Exception ex)
                     {
@@ -44,6 +44,15 @@ namespace CourseWork
                     pictureBoxUniversity.Image = null;
                 }
 
+                AdjustFormAndTextBoxSize();
+            }
+            else if (_university != null)
+            {
+                MessageBox.Show("Детальні дані для цього університету відсутні.", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labelNameFull.Text = "Повна назва: Відсутня";
+                labelAddressFull.Text = "Повна адреса: Відсутня";
+                textBoxDescriptionFull.Text = "Опис відсутній.";
+                pictureBoxUniversity.Image = null;
                 AdjustFormAndTextBoxSize();
             }
         }

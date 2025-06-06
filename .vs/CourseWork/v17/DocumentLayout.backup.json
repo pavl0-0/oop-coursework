@@ -3,60 +3,100 @@
   "WorkspaceRootPath": "G:\\CourseWork\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\universities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:universities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\saveduniversitiesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:saveduniversitiesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\saveduniversitiesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:saveduniversitiesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\saveduniversitiesform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:saveduniversitiesform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_database.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net8.0-windows\\universities_database.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\CourseWork\\bin\\Debug\\net8.0-windows\\user_database.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net8.0-windows\\user_database.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\saveduniversitiesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:saveduniversitiesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\universities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:universities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\universitybasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:universitybasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\universitystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:universitystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\CourseWork\\bin\\Debug\\net8.0-windows\\user_database.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net8.0-windows\\user_database.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\registrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:registrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\registrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:registrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\admin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:admin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\editprofileform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:editprofileform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_basic.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net8.0-windows\\universities_basic.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_stats.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net8.0-windows\\universities_stats.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_details.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net8.0-windows\\universities_details.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|g:\\coursework\\universitiesdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9647292E-EC37-4CFF-B21B-2F48D90DFF68}|CourseWork.csproj|solutionrelative:universitiesdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +106,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 209,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,65 +118,205 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SavedUniversitiesForm.Designer.cs",
+              "DocumentMoniker": "G:\\CourseWork\\SavedUniversitiesForm.Designer.cs",
+              "RelativeDocumentMoniker": "SavedUniversitiesForm.Designer.cs",
+              "ToolTip": "G:\\CourseWork\\SavedUniversitiesForm.Designer.cs*",
+              "RelativeToolTip": "SavedUniversitiesForm.Designer.cs*",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAACkAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T16:01:13.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SavedUniversitiesForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "G:\\CourseWork\\SavedUniversitiesForm.cs",
+              "RelativeDocumentMoniker": "SavedUniversitiesForm.cs",
+              "ToolTip": "G:\\CourseWork\\SavedUniversitiesForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "SavedUniversitiesForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:59:38.059Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Admin.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "G:\\CourseWork\\Admin.cs",
+              "RelativeDocumentMoniker": "Admin.cs",
+              "ToolTip": "G:\\CourseWork\\Admin.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "Admin.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:25:35.245Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Admin.Designer.cs",
+              "DocumentMoniker": "G:\\CourseWork\\Admin.Designer.cs",
+              "RelativeDocumentMoniker": "Admin.Designer.cs",
+              "ToolTip": "G:\\CourseWork\\Admin.Designer.cs",
+              "RelativeToolTip": "Admin.Designer.cs",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAnwP0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T14:28:31.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "universities_basic.json",
+              "DocumentMoniker": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_basic.json",
+              "RelativeDocumentMoniker": "bin\\Debug\\net8.0-windows\\universities_basic.json",
+              "ToolTip": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_basic.json",
+              "RelativeToolTip": "bin\\Debug\\net8.0-windows\\universities_basic.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-06T14:04:53.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "universities_details.json",
+              "DocumentMoniker": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_details.json",
+              "RelativeDocumentMoniker": "bin\\Debug\\net8.0-windows\\universities_details.json",
+              "ToolTip": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_details.json",
+              "RelativeToolTip": "bin\\Debug\\net8.0-windows\\universities_details.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-06T14:04:29.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "universities_stats.json",
+              "DocumentMoniker": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_stats.json",
+              "RelativeDocumentMoniker": "bin\\Debug\\net8.0-windows\\universities_stats.json",
+              "ToolTip": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_stats.json",
+              "RelativeToolTip": "bin\\Debug\\net8.0-windows\\universities_stats.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-06T14:04:27.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Main.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "G:\\CourseWork\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "G:\\CourseWork\\Main.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "Main.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T13:32:18.594Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UniversitiesDetails.cs",
+              "DocumentMoniker": "G:\\CourseWork\\UniversitiesDetails.cs",
+              "RelativeDocumentMoniker": "UniversitiesDetails.cs",
+              "ToolTip": "G:\\CourseWork\\UniversitiesDetails.cs",
+              "RelativeToolTip": "UniversitiesDetails.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T16:42:17.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UniversityBasic.cs",
+              "DocumentMoniker": "G:\\CourseWork\\UniversityBasic.cs",
+              "RelativeDocumentMoniker": "UniversityBasic.cs",
+              "ToolTip": "G:\\CourseWork\\UniversityBasic.cs",
+              "RelativeToolTip": "UniversityBasic.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAqwEkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T16:23:38.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UniversityStats.cs",
+              "DocumentMoniker": "G:\\CourseWork\\UniversityStats.cs",
+              "RelativeDocumentMoniker": "UniversityStats.cs",
+              "ToolTip": "G:\\CourseWork\\UniversityStats.cs",
+              "RelativeToolTip": "UniversityStats.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAUwE4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T16:21:32.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "SavedUniversitiesForm.cs",
               "DocumentMoniker": "G:\\CourseWork\\SavedUniversitiesForm.cs",
               "RelativeDocumentMoniker": "SavedUniversitiesForm.cs",
-              "ToolTip": "G:\\CourseWork\\SavedUniversitiesForm.cs",
-              "RelativeToolTip": "SavedUniversitiesForm.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAcwCMAAAAAAAAAAAAAAA==",
+              "ToolTip": "G:\\CourseWork\\SavedUniversitiesForm.cs*",
+              "RelativeToolTip": "SavedUniversitiesForm.cs*",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAYwNsAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-23T11:43:51.752Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Universities.cs",
               "DocumentMoniker": "G:\\CourseWork\\Universities.cs",
               "RelativeDocumentMoniker": "Universities.cs",
               "ToolTip": "G:\\CourseWork\\Universities.cs",
               "RelativeToolTip": "Universities.cs",
-              "ViewState": "AgIAAMwAAAAAAAAAAAAIwPEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAQwJIAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T19:31:55.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "LogInForm.cs",
               "DocumentMoniker": "G:\\CourseWork\\LogInForm.cs",
               "RelativeDocumentMoniker": "LogInForm.cs",
               "ToolTip": "G:\\CourseWork\\LogInForm.cs",
               "RelativeToolTip": "LogInForm.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAApwC0AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAnwC4AAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-07T14:56:02.164Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Admin.cs",
               "DocumentMoniker": "G:\\CourseWork\\Admin.cs",
               "RelativeDocumentMoniker": "Admin.cs",
               "ToolTip": "G:\\CourseWork\\Admin.cs",
               "RelativeToolTip": "Admin.cs",
-              "ViewState": "AgIAABUBAAAAAAAAAADwvx4BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOsBAAAAAAAAAAAuwJoBAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T19:58:33.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "EditProfileForm.cs",
               "DocumentMoniker": "G:\\CourseWork\\EditProfileForm.cs",
               "RelativeDocumentMoniker": "EditProfileForm.cs",
               "ToolTip": "G:\\CourseWork\\EditProfileForm.cs",
               "RelativeToolTip": "EditProfileForm.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAgwEMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAewAoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T20:34:14.049Z",
               "EditorCaption": ""
@@ -149,113 +329,100 @@
               "RelativeDocumentMoniker": "Main.cs",
               "ToolTip": "G:\\CourseWork\\Main.cs",
               "RelativeToolTip": "Main.cs",
-              "ViewState": "AgIAAPgAAAAAAAAAAAAmwBcBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAmwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T17:31:38.588Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 21,
               "Title": "CurrentUser.cs",
               "DocumentMoniker": "G:\\CourseWork\\CurrentUser.cs",
               "RelativeDocumentMoniker": "CurrentUser.cs",
               "ToolTip": "G:\\CourseWork\\CurrentUser.cs",
               "RelativeToolTip": "CurrentUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T20:38:15.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 17,
               "Title": "User.cs",
               "DocumentMoniker": "G:\\CourseWork\\User.cs",
               "RelativeDocumentMoniker": "User.cs",
               "ToolTip": "G:\\CourseWork\\User.cs",
               "RelativeToolTip": "User.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAqwBAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwB4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T11:18:29.197Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Form1.cs",
               "DocumentMoniker": "G:\\CourseWork\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "G:\\CourseWork\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAA5wC0AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowBwAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-08T07:22:37.597Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 22,
               "Title": "Info.cs",
               "DocumentMoniker": "G:\\CourseWork\\Info.cs",
               "RelativeDocumentMoniker": "Info.cs",
               "ToolTip": "G:\\CourseWork\\Info.cs",
               "RelativeToolTip": "Info.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAA3wEUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T18:16:23.067Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "user_database.json",
               "DocumentMoniker": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\user_database.json",
               "RelativeDocumentMoniker": "bin\\Debug\\net8.0-windows\\user_database.json",
               "ToolTip": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\user_database.json",
               "RelativeToolTip": "bin\\Debug\\net8.0-windows\\user_database.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-04-24T15:36:30.614Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "G:\\CourseWork\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "G:\\CourseWork\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-14T10:38:17.031Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RegistrationForm.cs",
               "DocumentMoniker": "G:\\CourseWork\\RegistrationForm.cs",
               "RelativeDocumentMoniker": "RegistrationForm.cs",
               "ToolTip": "G:\\CourseWork\\RegistrationForm.cs",
               "RelativeToolTip": "RegistrationForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAIA6wBMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-08T07:22:59.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "universities_database.json",
-              "DocumentMoniker": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_database.json",
-              "RelativeDocumentMoniker": "bin\\Debug\\net8.0-windows\\universities_database.json",
-              "ToolTip": "G:\\CourseWork\\bin\\Debug\\net8.0-windows\\universities_database.json",
-              "RelativeToolTip": "bin\\Debug\\net8.0-windows\\universities_database.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-23T20:11:36.771Z",
               "EditorCaption": ""
             }
           ]

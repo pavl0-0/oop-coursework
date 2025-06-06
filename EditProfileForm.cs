@@ -8,11 +8,13 @@ namespace CourseWork
     public partial class EditProfileForm : Form
     {
         private UserMananger userManager;
+        private UniversitiesManager _universitiesManager;
 
-        public EditProfileForm()
+        public EditProfileForm(UniversitiesManager universitiesManager)
         {
             InitializeComponent();
-            userManager = new UserMananger();
+            _universitiesManager = universitiesManager;
+            userManager = new UserMananger(_universitiesManager);
             this.FormClosing += EditProfileForm_FormClosing;
         }
 

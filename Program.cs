@@ -6,7 +6,8 @@ namespace CourseWork
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Applicants_Handbook());
+            UniversitiesManager universitiesManager = new UniversitiesManager();
+            Application.Run(new Applicants_Handbook(universitiesManager));
         }
 
         public static bool IsExitingProgram = false;
